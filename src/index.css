@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Italianno&family=Moulpali&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, Italianno, Moulpali, sans-serif;
+  color-scheme: light;
+  background-color: #ffffff;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: Inter;
+  margin: 0;
+  padding:0;
+  box-sizing: border-box;
+}
+
+h1{
+  font-family: Italianno, sans-serif;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #010511;
+    background-color: #ffffff;
+  }
+}
+.swiper-pagination-bullet.swiper-pagination-bullet-active{
+  background: #662D91 !important;
+  width: 14px !important;
+  height: 14px !important;
+}
+.swiper-pagination-bullet{
+  background: #F3DCFF !important;
+  width: 14px !important;
+  height: 14px !important;
+}
+.swiper-button-prev, .swiper-button-next{
+  transform: scale(.6) !important;
+  padding: 40px !important;
+  background: #662D91 !important;
+  color: #ffffff !important;
+  border-radius: 50% !important; ;
+}
+.swiper-button-prev{
+  z-index: 20;
+}
+.swiper-button-next, .swiper-rtl .swiper-button-prev{
+  right: -14px !important;
+}
+.swiper-button-prev, .swiper-ltr .swiper-button-next{
+  left: -14px !important;
+}
+@media screen and (max-width: 640px) {
+  .swiper-button-prev, .swiper-button-next{
+    transform: scale(.5) !important;
+  }
+}
