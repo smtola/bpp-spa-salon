@@ -1,12 +1,17 @@
 import Navigations from "../components/Navigations";
 import banner_1 from "../assets/images/banner_1.png";
 import Navbar from "../components/Navbar";
-import Products from "../components/Products";
+import Services from "../components/Services";
+import Product from "../components/Product";
+import WhyUs from "../components/Whyus";
+import quoteImg from "../assets/images/footer_banner.png";
+import Footer from "../components/Footer";
 export default function Home(){
     return(
         <div className="scroll-smooth">
             <Navigations />
             <div>
+                {/* Header Section*/}
                 <header className="relative flex flex-col justify-end items-center overflow-hidden min-h-[38vh] md:min-h-[45vh] lg:min-h-[48vh] xl:min-h-screen">
                     <div>
                         <img src={banner_1} alt="banner"
@@ -37,7 +42,32 @@ export default function Home(){
                         </p>
                     </div>
                 </header>
-                <Products/>
+                {/* Services Section*/}
+                <section id="services" className="mt-[3em] p-0 overflow-hidden">
+                    <Services/>
+                </section>
+                {/* Our Products Section*/}
+                <section id="products" className="m-0 -0">
+                    <Product />
+                </section>
+                {/*Why Choose Us Section*/}
+                <WhyUs />
+                {/* Banner Section*/}
+                <section  className="overflow-hidden">
+                    <div className="relative flex flex-col justify-center items-center min-h-[489px] overflow-hidden">
+                        <img src={quoteImg} alt="Quote"
+                             className="absolute inset-0 w-full h-full object-center object-cover"/>
+                        <div className="absolute inset-0 bg-gradient-to-br from-[#ffffff]/70 via-bpp-color-100/80 to-[#ffffff]/40"></div>
+                        <div className="relative">
+                            <h1 className="text-bpp-color-300 font-[400] text-[40px] md:text-[80px] lg:text-[120px] leading-[40px]">Your Beauty, Our Passion</h1>
+                        </div>
+                    </div>
+                </section >
+                {/* Footer Section*/}
+                <Footer />
+            </div>
+            <div className="w-full bg-[#ffffff] py-[1em] text-center text-bpp-color-300 font-[700]">
+                All right reserved 2025
             </div>
         </div>
     )

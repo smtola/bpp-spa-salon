@@ -1,11 +1,10 @@
-import {Link} from "react-router-dom";
-
+import { Link } from "react-scroll";
 export default function Navbar(){
     return(
         <nav className="hidden md:block bg-gradient-to-r from-[#ffffff] py-[5px] lg:py-[10px] px-[30px] lg:px-[50px] 2xl:px-[64px] rounded-full shadow-md shadow-gray-100/0">
             <ul className="flex items-center justify-center space-x-[1.2em] xl:space-x-[2em]">
                 <li>
-                    <Link to="#" className=" text-[12px] lg:text-[16px]
+                    <Link to="/" className=" text-[12px] lg:text-[16px]
                                     text-bpp-color-300
                                      hover:font-bold text-[16px]
                                      transition-all duration-[150] ease-out-in
@@ -14,7 +13,7 @@ export default function Navbar(){
                     </Link>
                 </li>
                 <li>
-                    <Link to="#" className=" text-[12px] lg:text-[16px]
+                    <Link to="services" smooth={true} duration={500} offset={-50} spy={true} className=" text-[12px] lg:text-[16px]
                                     text-bpp-color-300
                                      hover:font-bold text-[16px]
                                      transition-all duration-[150] ease-out-in
@@ -23,7 +22,7 @@ export default function Navbar(){
                     </Link>
                 </li>
                 <li>
-                    <Link to="#" className=" text-[12px] lg:text-[16px]
+                    <Link to="products" smooth={true} duration={500} offset={-50} spy={true} className=" text-[12px] lg:text-[16px]
                                     text-bpp-color-300
                                      hover:font-bold text-[16px]
                                      transition-all duration-[150] ease-out-in
@@ -32,7 +31,7 @@ export default function Navbar(){
                     </Link>
                 </li>
                 <li>
-                    <Link to="#" className=" text-[12px] lg:text-[16px]
+                    <Link to="/about-us" className=" text-[12px] lg:text-[16px]
                                     text-bpp-color-300
                                      hover:font-bold text-[16px]
                                      transition-all duration-[150] ease-out-in
@@ -41,7 +40,7 @@ export default function Navbar(){
                     </Link>
                 </li>
                 <li>
-                    <Link to="#" className=" text-[12px] lg:text-[16px]
+                    <Link to="contact-us" className=" text-[12px] lg:text-[16px]
                                     text-bpp-color-300
                                      hover:font-bold text-[16px]
                                      transition-all duration-[150] ease-out-in

@@ -12,6 +12,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   font-family: Inter;
@@ -61,3 +64,9 @@ h1{
     transform: scale(.5) !important;
   }
 }
+.swiper-button-prev:after{
+  content: '';
+}
+.swiper-button-next:after{
+  content: '';
+  }
