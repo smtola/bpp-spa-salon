@@ -3,7 +3,7 @@ import banner_1 from "../assets/images/sub_banner.png";
 import banner_2 from "../assets/images/sub_banner_2.png";
 import Navbar from "../components/Navbar";
 import quoteImg from "../assets/images/footer_banner.png";
-import cert from "../assets/images/cert_2.png";
+import cert from "../assets/images/Cert_2.png";
 import pin from "../assets/images/pin.png";
 import Footer from "../components/Footer";
 import '../components/Aboutus.css';
