@@ -163,7 +163,7 @@ export default function Navigations({services,products}:navProp){
                                 </NavLink>
                             </li>
                             <li>
-                                <Link to="about-us" className="text-[16px]
+                                <Link to="/about-us" className="text-[16px]
                                     text-[#ffffff]
                                      hover:font-bold text-[20px]
                                      transition-all duration-[150] ease-out-in
@@ -172,7 +172,7 @@ export default function Navigations({services,products}:navProp){
                                 </Link>
                             </li>
                             <li>
-                                <Link to="contact-us" className="text-[16px]
+                                <Link to="/contact-us" className="text-[16px]
                                     text-[#ffffff]
                                      hover:font-bold text-[20px]
                                      transition-all duration-[150] ease-out-in
