@@ -4,10 +4,13 @@ import tree from "../assets/images/treeLayer.png";
 import CallCenter from "../assets/images/call_center.png";
 import '../components/Aboutus.css';
 import Logo from "../assets/images/logo_white.png";
+import {useRef} from "react";
 export default function ContactUs(){
+    const services = useRef<HTMLDivElement>(null);
+    const products = useRef<HTMLDivElement>(null);
     return(
         <div className="scroll-smooth">
-            <Navigations />
+            <Navigations services={services} products={products}/>
             <div>
                 {/* Header Section*/}
                 <section className="relative flex flex-col justify-end items-start overflow-hidden min-h-screen md:min-h-[90vh] xl:min-h-[660px] 2xl:min-h-[831px]">
@@ -27,7 +30,7 @@ export default function ContactUs(){
                             px-[1em]
                             md:px-0
                         ">
-                            <Navbar />
+                            <Navbar services={services} products={products}/>
                             <div className="md:translate-x-[-20%] lg:translate-x-[-40%] 2xl:translate-x-[-50%]">
                                 <div className="mt-[1em] flex items-center space-x-4">
                                     <img src={

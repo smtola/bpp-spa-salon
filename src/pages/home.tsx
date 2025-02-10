@@ -6,10 +6,13 @@ import Product from "../components/Product";
 import WhyUs from "../components/Whyus";
 import quoteImg from "../assets/images/footer_banner.png";
 import Footer from "../components/Footer";
+import {useRef} from "react";
 export default function Home(){
+    const services = useRef<HTMLDivElement>(null);
+    const products = useRef<HTMLDivElement>(null);
     return(
         <div className="scroll-smooth">
-            <Navigations />
+            <Navigations services={services} products={products}/>
             <div>
                 {/* Header Section*/}
                 <header className="relative flex flex-col justify-end items-center overflow-hidden min-h-[38vh] md:min-h-[45vh] lg:min-h-[48vh] xl:min-h-screen">
@@ -24,7 +27,7 @@ export default function Home(){
                         2xl:translate-y-[20%]
                         translate-y-[5%]
                     ">
-                        <Navbar />
+                        <Navbar services={services} products={products}/>
                         <div className="md:translate-x-[12.5%] xl:translate-x-0">
                             <h1 className="text-[18px] md:text-[28px] lg:text-[38px] xl:text-[48px] text-bpp-color-300 text-center mt-[.5em] xl:mt-[1em] 2xl:mt-[1.4em] md:leading-[67px]">Welcome to</h1>
                             <h2 className="text-[20px] md:text-[30px] lg:text-[40px] xl:text-[50px] text-bpp-color-300 text-center leading-[1px] font-bold">
@@ -43,11 +46,11 @@ export default function Home(){
                     </div>
                 </header>
                 {/* Services Section*/}
-                <section id="services" className="mt-[3em] p-0 overflow-hidden">
+                <section ref={services} className="mt-[3em] p-0 overflow-hidden">
                     <Services/>
                 </section>
                 {/* Our Products Section*/}
-                <section id="products" className="m-0 -0">
+                <section ref={products} className="m-0 -0">
                     <Product />
                 </section>
                 {/*Why Choose Us Section*/}

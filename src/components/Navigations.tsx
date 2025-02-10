@@ -1,5 +1,20 @@
 import Logo from '../assets/images/logo_white.png';
-export default function Navigations(){
+import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+import {RefObject} from "react";
+interface navProp{
+    services:RefObject<HTMLDivElement>,
+    products:RefObject<HTMLDivElement>
+}
+export default function Navigations({services,products}:navProp){
+    const scrollToSection = (elementRef: React.RefObject<HTMLDivElement>) => {
+        if (elementRef.current) {
+            window.scrollTo({
+                top: elementRef.current.offsetTop,
+                behavior: "smooth",
+            });
+        }
+    };
     return(
         <header
             className="
@@ -98,7 +113,11 @@ export default function Navigations(){
                     </li>
                 </ul>
             </div>
-            <div className="md:hidden block">
+            <div className="md:hidden flex justify-end items-end gap-2">
+                <button className="border-2 border-bpp-color-300 rounded-full">
+                    <span className="text-center rounded-full px-2 py-1 text-bpp-color-300">ខ្មែរ</span>
+                    <span className="text-center bg-bpp-color-300 rounded-full px-4 py-1 text-[#ffffff]">EN</span>
+                </button>
                 <button>
                     <svg width="30" height="26" viewBox="0 0 30 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect width="30" height="3.90909" rx="1.95455" fill="#662D91"/>
@@ -106,6 +125,64 @@ export default function Navigations(){
                         <rect y="21.5" width="30" height="3.90909" rx="1.95455" fill="#662D91"/>
                     </svg>
                 </button>
+                <div className="fixed inset-0 translate-x-[14%] bg-gradient-to-br from-bpp-color-300 via-bpp-color-100 to-bpp-color-100 z-[50] rounded-l-[12px] transition-all duration-[150]">
+                        <button className="m-2 p-3 hover:bg-bpp-color-200/20 rounded-full">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#F3DCFF" strokeLinecap="round" strokeLinejoin="round" width="24" height="24" strokeWidth="1.75">
+                                <path d="M18 6l-12 12"></path>
+                                <path d="M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                    <hr className="border-bpp-color-100 "/>
+                    <div>
+                        <ul className="flex flex-col items-start p-2 gap-[1vw]">
+                            <li>
+                                <Link to="/"  className="text-[20px]
+                                    text-[#ffffff]
+                                     hover:font-bold
+                                     transition-all duration-[150] ease-out-in
+                                     ">
+                                    Home
+                                </Link>
+                            </li>
+                            <li>
+                                <NavLink to={"/#services"} onClick={()=>scrollToSection(services)}  className=" text-[12px] lg:text-[16px]
+                                    text-[#ffffff]
+                                     hover:font-bold text-[20px]
+                                     transition-all duration-[150] ease-out-in
+                                     ">
+                                    Services
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to={"/#products"} onClick={()=>scrollToSection(products)} className=" text-[12px] lg:text-[16px]
+                                    text-[#ffffff]
+                                     hover:font-bold text-[20px]
+                                     transition-all duration-[150] ease-out-in
+                                     ">
+                                    Products
+                                </NavLink>
+                            </li>
+                            <li>
+                                <Link to="about-us" className="text-[16px]
+                                    text-[#ffffff]
+                                     hover:font-bold text-[20px]
+                                     transition-all duration-[150] ease-out-in
+                                     ">
+                                    About Us
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="contact-us" className="text-[16px]
+                                    text-[#ffffff]
+                                     hover:font-bold text-[20px]
+                                     transition-all duration-[150] ease-out-in
+                                     ">
+                                    Contact Us
+                                </Link>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </header>
     )

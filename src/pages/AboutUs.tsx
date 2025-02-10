@@ -7,10 +7,13 @@ import cert from "../assets/images/cert_2.png";
 import pin from "../assets/images/pin.png";
 import Footer from "../components/Footer";
 import '../components/Aboutus.css';
+import {useRef} from "react";
 export default function AboutUs(){
+    const services = useRef<HTMLDivElement>(null);
+    const products = useRef<HTMLDivElement>(null);
     return(
         <div className="scroll-smooth">
-            <Navigations />
+            <Navigations services={services} products={products}/>
             <div>
                 {/* Header Section*/}
                 <header className="relative flex flex-col justify-end items-center overflow-hidden min-h-[230px] md:min-h-[440px] xl:min-h-[600px] 2xl:min-h-[850px]">
@@ -28,7 +31,7 @@ export default function AboutUs(){
                         2xl:translate-y-[5%]
                         translate-y-[5%]
                     ">
-                        <Navbar />
+                        <Navbar services={services} products={products}/>
                         <div className="translate-x-[10%] lg:translate-x-0">
                             <ul className="mt-[2px]md:mt-[1em] space-y-1 md:space-y-2">
                                 <li className="flex flex-col justify-center about-list group hover:bg-bpp-color-300/80 md:hover:bg-bpp-color-300 transition-all duration-[150] ease-out-in rounded-l-full rounded-r-0 lg:rounded-full py-[2px] md:py-0">
