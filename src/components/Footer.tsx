@@ -127,7 +127,7 @@ export default function Footer() {
                             </li>
                             <li data-aos="fade-up" data-aos-easing="ease-in-sine">
                                 <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4957.854812212375!2d104.8653555759997!3d11.532219888666331!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310951853bf850ef%3A0x9c10aa6e388880d!2sISI%20Tower!5e1!3m2!1sen!2skh!4v1739161805094!5m2!1sen!2skh"
+                                    src="https://www.google.com/maps/embed?pb=!1m13!1m8!1m3!1d9912.592499446762!2d104.881331!3d11.620165!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTHCsDM3JzEyLjYiTiAxMDTCsDUyJzUyLjgiRQ!5e1!3m2!1sen!2skh!4v1739270071086!5m2!1sen!2skh"
                                     className="w-full md:w-[434px] h-[267px]" loading="lazy"
                                     referrerPolicy="no-referrer-when-downgrade"></iframe>
                             </li>
