@@ -131,7 +131,7 @@ export default function Services() {
     };
 
     const validatePhone = (phone: any) => {
-        const phoneRegex = /^(\+855|0)(96\d{7}|1\d{8}|[23789]\d{7})$/;
+        const phoneRegex = /^(?:\+855|0)(?:[1-9]{1}[0-9]{7})$/;
         return phoneRegex.test(phone);
     };
 
