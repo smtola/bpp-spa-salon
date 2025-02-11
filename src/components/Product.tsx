@@ -323,7 +323,7 @@ export default function Product() {
                         <button className="btn btn-sm btn-circle btn-ghost text-bpp-color-100 absolute right-2 top-2">✕</button>
                     </form>
                     <div className="mt-[2em]">
-                        <form className="space-y-4 pb-[4em] md:pb-0" onSubmit={handleSubmit}>
+                        <form className="space-y-4 pb-[4em]" onSubmit={handleSubmit}>
                             <div >
                                 <label className="text-bpp-color-100" htmlFor="product_name">
                                     Product Name
@@ -474,7 +474,7 @@ export default function Product() {
                                     type="submit"
                                     className="inline-block w-full rounded-lg bg-bpp-color-200 hover:bg-bpp-color-100 hover:shadow-md float-end px-5 py-3 font-medium text-bpp-color-300 sm:w-auto"
                                 >
-                                    {btnLoading ? <div className="flex justify-center gap-2 items-center"><span className="loading loading-spinner text-bpp-color-100"></span> <p>loading...</p></div> :<p>Buy</p>}
+                                    {!btnLoading ? <div className="flex justify-center gap-2 items-center"><span className="loading loading-spinner text-bpp-color-100"></span> <p>loading...</p></div> :<p>Buy</p>}
                                 </button>
                             </div>
                         </form>

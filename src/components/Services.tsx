@@ -447,7 +447,7 @@ export default function Services() {
                                         type="submit"
                                         className="inline-block w-full rounded-lg bg-bpp-color-200 hover:bg-bpp-color-300 hover:shadow-md float-end px-5 py-3 font-medium text-bpp-color-300 sm:w-auto"
                                     >
-                                        {btnLoading ? <div className="flex justify-center gap-2 items-center"><span className="loading loading-spinner text-bpp-color-100"></span> <p>loading...</p></div> :<p>Book Now</p>}
+                                        {!btnLoading ? <div className="flex justify-center gap-2 items-center"><span className="loading loading-spinner text-bpp-color-100"></span> <p>loading...</p></div> :<p>Book Now</p>}
                                     </button>
                                 </div>
                             </form>
