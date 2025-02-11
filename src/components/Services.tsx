@@ -423,7 +423,7 @@ export default function Services() {
                                     <input
                                         className="w-full rounded-lg border-gray-200 p-3 text-sm text-bpp-color-300"
                                         placeholder="Arrival Time"
-                                        type="date"
+                                        type="datetime-local"
                                         id="at"
                                         value={formData.at}
                                         onChange={handleChange}
