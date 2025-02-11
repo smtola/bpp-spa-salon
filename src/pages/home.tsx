@@ -43,7 +43,7 @@ export default function Home(){
                         </div>
                     </div>
                     <div
-                        className="relative w-full xl:max-w-[140vh] md:max-w-[64vh] md:px-0 px-3">
+                        className="relative flex flex-col justify-end w-full xl:max-w-[140vh] md:max-w-[64vh] md:px-0 px-3">
                         <h2 data-aos="fade-right"
                             data-aos-easing="ease-in-sine"
                             className="text-bpp-color-300  font-bold text-[20px] md:text-[24px]">

@@ -300,7 +300,7 @@ export default function Product() {
                         <h2 className="text-bpp-color-300 text-[14px] md:text-[16px] font-bold">{product.pro_name}</h2>
                         <p className="text-bpp-color-300 text-[11px] md:text-[12px] font-bold text-pretty">{product.description}</p>
                     </div>
-                    <div className="w-full inline-flex justify-between items-end space-x-[2.5em] md:space-x-[4em] space-y-[10px]">
+                    <div className="w-full inline-flex justify-between items-end space-x-[2em] md:space-x-[4em] space-y-[10px]">
                         <h2 className="text-bpp-color-300 font-bold bg-bpp-color-100/40 rounded-full px-[14px] py-[1px]">
                             ${product.price}
                         </h2>

@@ -330,7 +330,7 @@ export default function Services() {
                                     />
                                 </div>
                                 <div className="px-2 pb-3">
-                                    <h2 className="text-[14px] md:text-[18px] text-bpp-color-300 font-medium my-2">
+                                    <h2 className="text-[12px] md:text-[18px] text-bpp-color-300 font-medium my-2">
                                         {services.product_name}
                                     </h2>
                                     <button
@@ -423,7 +423,7 @@ export default function Services() {
                                     <input
                                         className="w-full rounded-lg border-gray-200 p-3 text-sm text-bpp-color-300"
                                         placeholder="Arrival Time"
-                                        type="datetime-local"
+                                        type="date"
                                         id="at"
                                         value={formData.at}
                                         onChange={handleChange}
