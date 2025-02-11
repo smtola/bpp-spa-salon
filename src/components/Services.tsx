@@ -205,7 +205,8 @@ export default function Services() {
                     Rows: [
                         {
                             name: formData.name,
-                            phone: formData.name,
+                            phone: formData.phone,
+                            email: formData.email,
                             arrival_time: formatDate(formData.at),
                             message: formData.message,
                         },
