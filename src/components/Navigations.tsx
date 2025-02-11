@@ -11,7 +11,7 @@ export default function Navigations({services,products}:navProp){
     const [closeNav, isCloseNav] = useState<boolean>(true);
     const location = useLocation();
     const { i18n, t } = useTranslation();
-    const [lang, setLang] = useState<string | null>(null);
+    const [lang, setLang] = useState<string | null>('kh');
     useEffect(()=>{
         const localeEn = localStorage.getItem('i18nextLng');
         setLang(localeEn);

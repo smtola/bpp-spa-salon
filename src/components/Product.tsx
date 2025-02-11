@@ -1,6 +1,14 @@
-import KHM from '../assets/images/product.png'
-import {useState} from "react";
+import {useEffect, useState} from "react";
+
+interface Product{
+    pro_id:string;
+    pro_name:string;
+    description:string;
+    price:number;
+    image_url:string;
+}
 export default function Product() {
+    const [product, setProduct] = useState<Product[] | null>(null);
     const [formData, setFormData] = useState({
         productName: "",
         price: 0,
@@ -8,14 +16,75 @@ export default function Product() {
         name: "",
         email: "",
         phone: "",
-        address: "",
+        address: ""
     });
-
     const [error, setError] = useState({
         phone: "",
         email: "",
         address: "",
     });
+    const [isLoading, setIsLoading] = useState(true);
+
+    const [productName, setProductName] = useState<string | null>('');
+    const [price, setPrice] = useState<number | null>(0);
+    const [errorData, setErrorData] = useState<string | null>(null);
+    const [modalID, setModalID] = useState<string>('');
+    const [btnLoading, setBtnLoading] = useState(true);
+    const [alert, setAlert] = useState<string | null>(null);
+
+    useEffect(()=>{
+        fetchData();
+        if (alert) {
+            const timer = setTimeout(() => {
+                setAlert(null);
+            }, 1000);
+            return () => clearTimeout(timer);
+        }
+    },[alert, setAlert]);
+
+    useEffect(() => {
+        // Update formData whenever productName changes
+        setFormData((prev) => ({
+            ...prev,
+            productName: productName || "",
+            price: price || 0,
+        }));
+    }, [productName]);
+
+    const fetchData = async () => {
+        const apiKey = 'V2-zXfYl-N34Ka-WaWcb-JA4zL-LoOjX-4Xgbf-MXUfn-dy5U0';
+        const tableName = "Products";
+        const appId = '630daa92-8472-4471-a1e6-31b8f7bf869c';
+        const endPoint = `https://api.appsheet.com/api/v2/apps/${appId}/tables/${tableName}/query`;
+
+        setIsLoading(true);
+        try{
+            const response = await fetch(endPoint, {
+                method: "POST",
+                headers:{
+                    "Content-Type": "application/json",
+                    applicationAccessKey: apiKey,
+                },
+                body:JSON.stringify({
+                    Action:"Find",
+                    Properties:{
+                        Locale:"en-US",
+                        Timezone: "UTC",
+                    },
+                    Rows:[]
+                }),
+            });
+            if(!response.ok){
+                throw new Error("Failed to fetch data from Database");
+            }
+            const result: Product[] = await response.json();
+            setProduct(result);
+        }catch (err){
+            setErrorData((err as Error).message);
+        }finally {
+            setIsLoading(false);
+        }
+    }
     const handleChange = (e: any) => {
         setFormData({
             ...formData,
@@ -38,7 +107,32 @@ export default function Product() {
         return addressRegex.test(address);
     };
 
-    const handleSubmit = (e: any) => {
+    const handleModalOpen = (id:string) =>{
+        setModalID(id);
+        setTimeout(() => {
+            const bindingElement = document.getElementById(id);
+            if (bindingElement) {
+                const dialogElement = bindingElement as HTMLDialogElement;
+                if (dialogElement && typeof dialogElement.showModal === "function") {
+                    dialogElement.showModal();
+                } else {
+                    console.error(
+                        `The element with ID "${id}" does not support the "showModal" method. Ensure it's a <dialog> element.`
+                    );
+                }
+            } else {
+                console.error(`No element found with ID "${id}".`);
+            }
+        }, 0);
+        product?.map((items) => {
+            if (items.pro_id === id) {
+                setProductName(items.pro_name);
+                setPrice(items.price);
+            }
+        });
+    }
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
         const phoneValid = validatePhone(formData.phone);
@@ -53,9 +147,99 @@ export default function Product() {
             address: addressValid ? "" : "Invalid address format",
         }));
 
-        if (phoneValid && emailValid && addressValid) {
+        if (!phoneValid && !emailValid) {
             // Submit the form data here
-            console.log("Form submitted successfully", formData);
+            return;
+        }
+
+        const apiKey = 'V2-zXfYl-N34Ka-WaWcb-JA4zL-LoOjX-4Xgbf-MXUfn-dy5U0';
+        const tableName = "order";
+        const appId = '630daa92-8472-4471-a1e6-31b8f7bf869c';
+        const endPoint = `https://api.appsheet.com/api/v2/apps/${appId}/tables/${tableName}/query`;
+
+        // telegram
+        const TELEGRAM_BOT_TOKEN = '7786727966:AAENBDXFKdVcYAPYkKFkpEta2-UlvoyB1q0'; // Store your token in an environment variable
+        const TELEGRAM_CHAT_ID = '-1002459175480'; // Store your group chat ID in an environment variable
+        const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+        const message = `
+        📦 *New Ordering Product* 📦
+        - 📇 *Customer Name:* ${formData.name}
+        - 📞 *Phone:* ${formData.phone}
+        - ✉️ *Email:* ${formData.email}
+        - 📩 *Address:* ${formData.address}
+        - =============================
+        - 🏷️ *Product Name:* ${formData.productName}
+        - 💵 *Price:* $${formData.price}
+        - 🔢 *Quantity:* ${formData.qtyChange}
+        - 💵 *Total Amount:* $${formData.price * formData.qtyChange}
+        `;
+
+        setBtnLoading(true);
+        try {
+            const res = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: TELEGRAM_CHAT_ID,
+                    text: message,
+                    parse_mode: 'Markdown', // Enables formatting
+                }),
+            });
+
+            const resAppSheet = await fetch(endPoint, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    applicationAccessKey: apiKey,
+                },
+                body: JSON.stringify({
+                    Action: "Add",
+                    Properties: {
+                        Locale: "en-US",
+                        Timezone: "UTC",
+                    },
+                    Rows: [
+                        {
+                            product_name: formData.productName,
+                            price: formData.price,
+                            qty: formData.qtyChange,
+                            total_amount: formData.price * formData.price,
+                            name: formData.name,
+                            email: formData.email,
+                            phone: formData.phone,
+                            address: formData.address,
+                        },
+                    ],
+                }),
+            });
+
+            const data = await res.json();
+            const dataAppSheet = await resAppSheet.json();
+
+            if (res.ok) {
+                setFormData({
+                    productName: "",
+                    name: "",
+                    email: "",
+                    phone: "",
+                    price: 0,
+                    qtyChange: 0,
+                    address: ""
+                });
+
+                const modal = document.getElementById(modalID) as HTMLDialogElement | null;
+                if (modal) {
+                    modal.close();
+                }
+                setBtnLoading(false);
+                setAlert("Message sent successfully!");
+            } else {
+                setAlert(`Error: ${data.message}`);
+                setAlert(`Error: ${dataAppSheet.message}`);
+            }
+        } catch (error) {
+            setAlert("An error occurred while sending the message.");
+            console.error(error);
         }
     };
 
@@ -65,14 +249,47 @@ export default function Product() {
             currency: "USD",
         }).format(value);
     };
+    if (isLoading) {
+        return (
+            <div className="flex flex-col items-center">
+                <div className="w-12 h-12 border-4 border-bpp-color-300 border-dashed rounded-full animate-spin"></div>
+                <h2 className="
+                text-[12px]
+                lg:text-[14px]
+                xl:text-[20px]
+                text-bpp-color-300
+                font-bold
+                my-6
+                font-['Moulpali']">
+                    ពោធិ៍ព្រឹក្សបាយ៍ន ស្បា និងសាឡន
+                </h2>
+            </div>
+        );
+    }
+    if (errorData) {
+        return <div>Error: {errorData}</div>;
+    }
     return(
         <div className="w-full h-fit bg-gradient-to-br from-[#ffffff] via-bpp-color-100 to-[#ffffff] pt-10 pb-[6em] px-3 overflow-hidden">
+            {alert ? (
+                <div
+                    role="alert"
+                    className="fixed top-4 right-3 rounded border-s-4 border-bpp-color-300 bg-bpp-color-100 p-2"
+                >
+                    <p className=" text-[16px] text-[#0f8237]">
+                        {alert}
+                    </p>
+                </div>
+            ) : (
+                ""
+            )}
             <h2 className="text-start text-bpp-color-300 text-[16px] md:text-[18px] xl:text-[22px] font-bold xl:ms-[10em] mb-[2em]">Our Products</h2>
             <div className="max-w-screen-lg mx-auto grid grid-cols-12 items-center justify-center gap-[2vw] lg:gap-[1vw]">
-            <div  data-aos="fade-right" data-aos-easing="ease-in-sine"
+                {product && product.map((product, index)=>
+            <div key={index} data-aos="fade-right" data-aos-easing="ease-in-sine"
                 className="col-span-6 md:col-span-4 lg:col-span-3 h-full bg-[#ffffff] rounded-[12px] p-2 overflow-hidden transition-all duration-[150]">
-                <div className="bg-bpp-color-100/30 rounded-[12px]">
-                    <img src={KHM} alt="product" className="w-full h-full object-center object-center p-1"/>
+                <div className="bg-bpp-color-100/30 rounded-[12px] h-[186px] md:h-[205px] overflow-hidden">
+                    <img src={product.image_url} alt={product.pro_name} className="w-full h-full object-contain object-center p-1"/>
                 </div>
                 <div className="flex flex-col">
                     <div>
@@ -80,58 +297,26 @@ export default function Product() {
                             <h2 className="text-bpp-color-300 text-[14px] md:text-[18px] font-bold">RESTORE</h2>
                             <h3 className="text-bpp-color-300 text-[12px] md:text-[14px] font-bold">Premium</h3>
                         </div>
-                        <h2 className="text-bpp-color-300 text-[14px] md:text-[16px] font-bold">KERATIN HAIR MASK</h2>
-                        <p className="text-bpp-color-300 text-[11px] md:text-[12px] font-bold text-pretty">Made with 100% Organic Ingredients</p>
+                        <h2 className="text-bpp-color-300 text-[14px] md:text-[16px] font-bold">{product.pro_name}</h2>
+                        <p className="text-bpp-color-300 text-[11px] md:text-[12px] font-bold text-pretty">{product.description}</p>
                     </div>
                     <div className="w-full inline-flex justify-between items-end space-x-[2.5em] md:space-x-[4em] space-y-[10px]">
                         <h2 className="text-bpp-color-300 font-bold bg-bpp-color-100/40 rounded-full px-[14px] py-[1px]">
-                            $35
+                            ${product.price}
                         </h2>
                         <button
-                            onClick={() => {
-                                const modal = document.getElementById('my_modal_4') as HTMLDialogElement | null;
-                                modal?.showModal();
-                            }}
+                            onClick={() => handleModalOpen(product.pro_id)}
                             className="w-full bg-bpp-color-300 py-[2px] px-[16px] rounded-full text-[#ffffff] hover:bg-bpp-color-200 transition-all duration-[150]">
                             Buy
                         </button>
                     </div>
                 </div>
             </div>
-
-            <div data-aos="fade-left" data-aos-easing="ease-in-sine"
-                className="col-span-6 md:col-span-4 lg:col-span-3 h-full bg-[#ffffff] rounded-[12px] p-2 overflow-hidden transition-all duration-[150]">
-                <div className="bg-bpp-color-100/30 rounded-[12px]">
-                    <img src={KHM} alt="product" className="w-full h-full object-center object-center p-1"/>
-                </div>
-                <div className="flex flex-col">
-                    <div>
-                        <div className="inline-flex justify-center items-end space-x-2">
-                            <h2 className="text-bpp-color-300 text-[14px] md:text-[18px] font-bold">RESTORE</h2>
-                            <h3 className="text-bpp-color-300 text-[12px] md:text-[14px] font-bold">Premium</h3>
-                        </div>
-                        <h2 className="text-bpp-color-300 text-[14px] md:text-[16px] font-bold">HAIR SHAMPOO</h2>
-                        <p className="text-bpp-color-300 text-[11px] md:text-[12px] font-bold text-pretty">Made with 100% Organic Ingredients</p>
-                    </div>
-                    <div className="w-full inline-flex justify-between items-end space-x-[2.5em] md:space-x-[4em] space-y-[10px]">
-                        <h2 className="text-bpp-color-300 font-bold bg-bpp-color-100/40 rounded-full px-[14px] py-[1px]">
-                            $32
-                        </h2>
-                        <button
-                            onClick={() => {
-                                const modal = document.getElementById('my_modal_4') as HTMLDialogElement | null;
-                                modal?.showModal();
-                            }}
-                            className="w-full bg-bpp-color-300 py-[2px] px-[16px] rounded-full text-[#ffffff] hover:bg-bpp-color-200 transition-all duration-[150]">
-                            Buy
-                        </button>
-                    </div>
-                </div>
-            </div>
+                )}
         </div>
         {/*    modal*/}
-
-            <dialog id="my_modal_4" className="modal">
+            {modalID && product?.map((items, idx)=>
+            <dialog key={idx} id={items.pro_id} className="modal">
                 <div className="modal-box bg-bpp-color-300">
                     <form method="dialog">
                         {/* if there is a button in form, it will close the modal */}
@@ -175,7 +360,7 @@ export default function Product() {
                                     className="w-full rounded-lg border-gray-200 p-3 text-sm text-bpp-color-300"
                                     placeholder="Total Amount"
                                     type="hidden"
-                                    value={formData.qtyChange * 35}
+                                    value={formData.qtyChange * formData.price}
                                     id="amount"
                                     required
                                 />
@@ -183,7 +368,7 @@ export default function Product() {
                                     {formatCurrency(formData.qtyChange * 35)}
                                 </p>
                             </div>
-                            <div className="w-[200px]" data-aos="fade-down" data-aos-easing="ease-in-sine">
+                            <div className="w-[200px]">
                                 <label htmlFor="Quantity" className="text-bpp-color-100">
                                     Quantity
                                 </label>
@@ -239,7 +424,7 @@ export default function Product() {
 
                             <div
                                 className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                                <div data-aos="fade-left" data-aos-easing="ease-in-sine">
+                                <div>
                                     <label className="text-bpp-color-100" htmlFor="email">
                                         Email
                                     </label>
@@ -289,13 +474,14 @@ export default function Product() {
                                     type="submit"
                                     className="inline-block w-full rounded-lg bg-bpp-color-200 hover:bg-bpp-color-100 hover:shadow-md float-end px-5 py-3 font-medium text-bpp-color-300 sm:w-auto"
                                 >
-                                    Buy
+                                    {btnLoading ? <div className="flex justify-center gap-2 items-center"><span className="loading loading-spinner text-bpp-color-100"></span> <p>loading...</p></div> :<p>Buy</p>}
                                 </button>
                             </div>
                         </form>
                     </div>
                 </div>
             </dialog>
+            )}
         </div>
     )
 }
