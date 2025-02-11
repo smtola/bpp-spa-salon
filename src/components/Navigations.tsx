@@ -1,12 +1,35 @@
 import Logo from '../assets/images/logo_white.png';
-import { NavLink } from "react-router-dom";
-import { Link } from "react-router-dom";
-import {RefObject} from "react";
+import { Link, useLocation } from "react-router-dom";
+import {RefObject, useEffect, useState} from "react";
+import { useTranslation } from 'react-i18next';
+import '../i18n';
 interface navProp{
     services:RefObject<HTMLDivElement>,
     products:RefObject<HTMLDivElement>
 }
 export default function Navigations({services,products}:navProp){
+    const [closeNav, isCloseNav] = useState<boolean>(true);
+    const location = useLocation();
+    const { i18n, t } = useTranslation();
+    const [lang, setLang] = useState<string | null>(null);
+    useEffect(()=>{
+        const localeEn = localStorage.getItem('i18nextLng');
+        setLang(localeEn);
+    });
+    const triggerKhClick = (value:string) => {
+        i18n.changeLanguage(value);
+    };
+
+    const triggerEnClick = (value:string) => {
+        i18n.changeLanguage(value);
+    };
+    const handleOpenNav = () => {
+        isCloseNav(false);
+    }
+    const handleCloseNav = () => {
+         isCloseNav(true);
+        }
+
     const scrollToSection = (elementRef: React.RefObject<HTMLDivElement>) => {
         if (elementRef.current) {
             window.scrollTo({
@@ -32,12 +55,14 @@ export default function Navigations({services,products}:navProp){
             gap-2
             ">
             <div className="md:col-span-4 lg:col-span-4 2xl:col-span-6 flex items-center space-x-[.5em]">
-                <img src={
-                    Logo
-                }
-                     alt="Logo Navbar"
-                     className="w-[3em] xl:w-[4rem] rounded-full"
-                />
+                <Link to="/">
+                    <img src={
+                        Logo
+                    }
+                         alt="Logo Navbar"
+                         className="w-[3em] xl:w-[4rem] rounded-full"
+                    />
+                </Link>
                 <h2 className="
                 text-[12px]
                 lg:text-[14px]
@@ -106,27 +131,27 @@ export default function Navigations({services,products}:navProp){
                         </span>
                     </li>
                     <li>
-                        <button className="border-2 border-bpp-color-300 w-full rounded-full">
-                            <span className="text-center rounded-full px-2 py-1 text-bpp-color-300">ខ្មែរ</span>
-                            <span className="text-center bg-bpp-color-300 rounded-full px-4 py-1 text-[#ffffff]">EN</span>
-                        </button>
+                        <div className="border-2 border-bpp-color-300 w-full rounded-full flex">
+                            <button onClick={()=>triggerKhClick('kh')} className={`text-center rounded-full transition-all duration-[150] font-['Kantumruy_Pro'] ${lang == 'kh' ? 'bg-bpp-color-300  px-4 py-1 text-[#ffffff]': 'px-2 py-1 text-bpp-color-300'}`}>ខ្មែរ</button>
+                            <button onClick={()=>triggerEnClick('en')} className={`text-center rounded-full transition-all duration-[150] ${lang == 'en' ? 'bg-bpp-color-300  px-4 py-1 text-[#ffffff]': 'px-2 py-1 text-bpp-color-300'}`}>EN</button>
+                        </div>
                     </li>
                 </ul>
             </div>
-            <div className="md:hidden flex justify-end items-end gap-2">
-                <button className="border-2 border-bpp-color-300 rounded-full">
-                    <span className="text-center rounded-full px-2 py-1 text-bpp-color-300">ខ្មែរ</span>
-                    <span className="text-center bg-bpp-color-300 rounded-full px-4 py-1 text-[#ffffff]">EN</span>
-                </button>
-                <button>
+            <div className="md:hidden flex justify-end items-center gap-2">
+                <div className="border-2 border-bpp-color-300 w-full rounded-full flex">
+                    <button onClick={()=>triggerKhClick('kh')} className={`text-center rounded-full transition-all duration-[150] font-['Kantumruy_Pro'] ${lang == 'kh' ? 'bg-bpp-color-300  px-4 py-1 text-[#ffffff]': 'px-2 py-1 text-bpp-color-300'}`}>ខ្មែរ</button>
+                    <button onClick={()=>triggerEnClick('en')} className={`text-center rounded-full transition-all duration-[150] ${lang == 'en' ? 'bg-bpp-color-300  px-4 py-1 text-[#ffffff]': 'px-2 py-1 text-bpp-color-300'}`}>EN</button>
+                </div>
+                <button onClick={handleOpenNav}>
                     <svg width="30" height="26" viewBox="0 0 30 26" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect width="30" height="3.90909" rx="1.95455" fill="#662D91"/>
                         <rect y="10.75" width="30" height="3.90909" rx="1.95455" fill="#662D91"/>
                         <rect y="21.5" width="30" height="3.90909" rx="1.95455" fill="#662D91"/>
                     </svg>
                 </button>
-                <div className="fixed inset-0 translate-x-[14%] bg-gradient-to-br from-bpp-color-300 via-bpp-color-100 to-bpp-color-100 z-[50] rounded-l-[12px] transition-all duration-[150]">
-                        <button className="m-2 p-3 hover:bg-bpp-color-200/20 rounded-full">
+                <div className={closeNav === true ? "fixed inset-0 translate-x-[100%] bg-gradient-to-br from-bpp-color-300 via-bpp-color-100 to-bpp-color-100 z-[50] rounded-l-[12px] transition-all duration-[300]" :"fixed inset-0 translate-x-[14%] bg-gradient-to-br from-bpp-color-300 via-bpp-color-100 to-bpp-color-100 z-[50] rounded-l-[12px] transition-all duration-[300]"}>
+                        <button onClick={handleCloseNav} className="m-2 p-3 hover:bg-bpp-color-200/20 rounded-full">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#F3DCFF" strokeLinecap="round" strokeLinejoin="round" width="24" height="24" strokeWidth="1.75">
                                 <path d="M18 6l-12 12"></path>
                                 <path d="M6 6l12 12"></path>
@@ -134,50 +159,55 @@ export default function Navigations({services,products}:navProp){
                         </button>
                     <hr className="border-bpp-color-100 "/>
                     <div>
-                        <ul className="flex flex-col items-start p-2 gap-[1vw]">
+                        <ul className="flex flex-col items-start pt-3 ps-4 gap-[5vw]">
                             <li>
-                                <Link to="/"  className="text-[20px]
+                                <Link to="/"  className={`text-[20px]
                                     text-[#ffffff]
-                                     hover:font-bold
-                                     transition-all duration-[150] ease-out-in
-                                     ">
-                                    Home
+                                    ${location.pathname == '/' ? 'font-[700]':'hover:font-[700]'}
+                                    transition-all duration-[150] ease-out-in
+                                    ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}
+                                    `}>
+                                    {t('home')}
                                 </Link>
                             </li>
                             <li>
-                                <NavLink to={"/#services"} onClick={()=>scrollToSection(services)}  className=" text-[12px] lg:text-[16px]
+                                <Link to="/#services" onClick={()=>scrollToSection(services)}  className={`text-[20px]
                                     text-[#ffffff]
-                                     hover:font-bold text-[20px]
-                                     transition-all duration-[150] ease-out-in
-                                     ">
-                                    Services
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink to={"/#products"} onClick={()=>scrollToSection(products)} className=" text-[12px] lg:text-[16px]
-                                    text-[#ffffff]
-                                     hover:font-bold text-[20px]
-                                     transition-all duration-[150] ease-out-in
-                                     ">
-                                    Products
-                                </NavLink>
-                            </li>
-                            <li>
-                                <Link to="/about-us" className="text-[16px]
-                                    text-[#ffffff]
-                                     hover:font-bold text-[20px]
-                                     transition-all duration-[150] ease-out-in
-                                     ">
-                                    About Us
+                                    ${location.pathname == '/#services' ? 'font-[700]':'hover:font-[700]'}
+                                    transition-all duration-[150] ease-out-in
+                                    ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}
+                                    `}>
+                                    {t('service')}
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/contact-us" className="text-[16px]
+                                <Link to="/#products" onClick={()=>scrollToSection(products)} className={`text-[20px]
                                     text-[#ffffff]
-                                     hover:font-bold text-[20px]
-                                     transition-all duration-[150] ease-out-in
-                                     ">
-                                    Contact Us
+                                    ${location.pathname == '/#products' ? 'font-[700]':'hover:font-[700]'}
+                                    transition-all duration-[150] ease-out-in
+                                    ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}
+                                    `}>
+                                    {t('product')}
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/about-us" className={`
+                                    text-[#ffffff]
+                                    ${location.pathname == '/about-us' ? 'font-[700]':'hover:font-[700]'} text-[20px]
+                                    transition-all duration-[150] ease-out-in
+                                    ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}
+                                    `}>
+                                    {t('aboutUs')}
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/contact-us" className={`
+                                    text-[#ffffff]
+                                    ${location.pathname == '/contact-us' ? 'font-[700]':'hover:font-[700]'} text-[20px]
+                                    transition-all duration-[150] ease-out-in
+                                    ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}
+                                    `}>
+                                    {t('contactUs')}
                                 </Link>
                             </li>
                         </ul>

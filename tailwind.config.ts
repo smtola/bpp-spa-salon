@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+import daisyui from "daisyui"
 export default {
   content: [
     "./index.html",
@@ -11,5 +12,5 @@ export default {
       "bpp-color-300": '#662D91',
     }
   },
-  plugins: [],
+  plugins: [daisyui,],
 }

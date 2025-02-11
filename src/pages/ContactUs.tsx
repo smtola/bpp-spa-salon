@@ -5,21 +5,24 @@ import CallCenter from "../assets/images/call_center.png";
 import '../components/Aboutus.css';
 import Logo from "../assets/images/logo_white.png";
 import {useRef} from "react";
+import GoToTop from "../components/GoToTop";
+import Scroll from "../components/Scroll";
 export default function ContactUs(){
     const services = useRef<HTMLDivElement>(null);
     const products = useRef<HTMLDivElement>(null);
     return(
         <div className="scroll-smooth">
+            <Scroll />
             <Navigations services={services} products={products}/>
             <div>
                 {/* Header Section*/}
                 <section className="relative flex flex-col justify-end items-start overflow-hidden min-h-screen md:min-h-[90vh] xl:min-h-[660px] 2xl:min-h-[831px]">
                     <div className="absolute inset-0 bg-gradient-to-br from-bpp-color-300 to-bpp-color-100/10">
-                        <img src={tree} alt="tree"
+                        <img src={tree} alt="tree" data-aos="fade-right" data-aos-easing="ease-in-sine"
                         className="w-[370px] md:w-[500px] lg:w-[600px] xl:w-[235px] 2xl:w-[350px] float-end mt-[14em]"
                         />
                     </div>
-                    <img src={CallCenter} alt="CallCenter"
+                    <img src={CallCenter} alt="CallCenter" data-aos="fade-up" data-aos-easing="ease-in-sine"
                          className="hidden md:block w-[250px] md:w-[300px] lg:w-[400px] xl:w-[340px] 2xl:w-[500px] ms-[1em] md:ms-[5em] 2xl:ms-[10em] object-cover object-left z-[50]"
                     />
                         <div className="absolute right-0 top-0
@@ -36,10 +39,11 @@ export default function ContactUs(){
                                     <img src={
                                         Logo
                                     }
-                                         alt="Logo Navbar"
+                                         alt="Logo Navbar" data-aos="fade-down" data-aos-easing="ease-in-sine"
                                          className="w-[3em] md:w-[4rem] rounded-full"
                                     />
-                                    <h2 className="
+                                    <h2 data-aos="fade-left" data-aos-easing="ease-in-sine"
+                                        className="
                                         text-[14px]
                                         xl:text-[20px]
                                         text-bpp-color-100
@@ -49,22 +53,23 @@ export default function ContactUs(){
                                     </h2>
 
                                 </div>
-                                <div className="w-full md:max-w-xl 2xl:max-w-md my-3">
+                                <div data-aos="fade-up" data-aos-easing="ease-in-sine"
+                                    className="w-full md:max-w-xl 2xl:max-w-md my-3">
                                     <p className="text-[#ffffff] text-[16px] font-[400] text-pretty">
                                         Recognizing the challenges modern women face—juggling work, family, and personal care—the owner envisioned a sanctuary where women could feel beautiful and rejuvenated despite their busy lives. At BPP Spa and Salon, we offer exceptional services from head to toe, including hair, eyes, facial, armpit, nail, and body spa treatments.
                                     </p>
                                 </div>
-                                <div className="w-full md:max-w-xl grid grid-cols-12 items-start justify-start gap-[1vw] my-3">
+                                <div  className="w-full md:max-w-xl grid grid-cols-12 items-start justify-start gap-[1vw] my-3">
                                     <div className="col-span-12 md:col-span-6">
-                                        <h2 className="text-[#ffffff] text-[16px] font-[700]">Operation Hour : 7:30am -8:30pm</h2>
-                                        <h2 className="text-[#ffffff] text-[16px] font-[700]">Mon - Sun</h2>
-                                        <h2 className="text-[#ffffff] text-[16px] font-[700]">076 3 9999 66</h2>
+                                        <h2 data-aos="fade-up" data-aos-easing="ease-in-sine" className="text-[#ffffff] text-[16px] font-[700]">Operation Hour : 7:30am -8:30pm</h2>
+                                        <h2 data-aos="fade-up" data-aos-easing="ease-in-sine" className="text-[#ffffff] text-[16px] font-[700]">Mon - Sun</h2>
+                                        <h2 data-aos="fade-up" data-aos-easing="ease-in-sine" className="text-[#ffffff] text-[16px] font-[700]">076 3 9999 66</h2>
 
-                                        <h2 className="text-[#ffffff] text-[16px] font-[700] mt-[10px]">Address :</h2>
-                                        <p className="text-[#ffffff] text-[16px] font-[400] text-pretty">Shop House #369D, Street 777, Borey Vimean Phnom Penh Thmey Project 598</p>
+                                        <h2 data-aos="fade-up" data-aos-easing="ease-in-sine" className="text-[#ffffff] text-[16px] font-[700] mt-[10px]">Address :</h2>
+                                        <p data-aos="fade-up" data-aos-easing="ease-in-sine" className="text-[#ffffff] text-[16px] font-[400] text-pretty">Shop House #369D, Street 777, Borey Vimean Phnom Penh Thmey Project 598</p>
 
-                                        <h2 className="text-[#ffffff] text-[16px] font-[700] mt-[10px]">Follow Us</h2>
-                                        <div className="inline-flex items-center my-[1em] space-x-3">
+                                        <h2 data-aos="fade-up" data-aos-easing="ease-in-sine" className="text-[#ffffff] text-[16px] font-[700] mt-[10px]">Follow Us</h2>
+                                        <div data-aos="fade-up" data-aos-easing="ease-in-sine" className="inline-flex items-center my-[1em] space-x-3">
                                             <span>
                                                 <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M17.5 35C27.165 35 35 27.165 35 17.5C35 7.83501 27.165 0 17.5 0C7.83501 0 0 7.83501 0 17.5C0 27.165 7.83501 35 17.5 35Z" fill="white"/>
@@ -86,7 +91,7 @@ export default function ContactUs(){
                                             </span>
                                         </div>
                                     </div>
-                                    <div className="col-span-12 md:col-span-6">
+                                    <div data-aos="fade-up" data-aos-easing="ease-in-sine" className="col-span-12 md:col-span-6">
                                         <iframe
                                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4957.854812212375!2d104.8653555759997!3d11.532219888666331!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310951853bf850ef%3A0x9c10aa6e388880d!2sISI%20Tower!5e1!3m2!1sen!2skh!4v1739161805094!5m2!1sen!2skh"
                                             className="w-full md:w-[350px] h-[227px] 2xl:w-[434px] 2xl:h-[267px]" loading="lazy"
@@ -96,6 +101,7 @@ export default function ContactUs(){
                             </div>
                         </div>
                 </section>
+                <GoToTop/>
             </div>
             <div className="w-full bg-gradient-to-l from-bpp-color-300 to-bpp-color-100 py-[1em] text-center text-bpp-color-100 font-[700]">
                 All right reserved 2025

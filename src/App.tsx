@@ -3,7 +3,17 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Home from './pages/home';
 import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import {useEffect} from "react";
 function App() {
+    useEffect(() => {
+        AOS.init({
+            duration: 600,  // Optional: Set animation duration
+            easing: 'ease-in-out',  // Optional: Set easing function
+            once: true,  // Optional: Set animation to trigger only once
+        });
+    }, []);
   return (
     <BrowserRouter>
       <Routes>

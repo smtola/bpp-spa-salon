@@ -8,11 +8,14 @@ import pin from "../assets/images/pin.png";
 import Footer from "../components/Footer";
 import '../components/Aboutus.css';
 import {useRef} from "react";
+import GoToTop from "../components/GoToTop";
+import Scroll from "../components/Scroll";
 export default function AboutUs(){
     const services = useRef<HTMLDivElement>(null);
     const products = useRef<HTMLDivElement>(null);
     return(
         <div className="scroll-smooth">
+            <Scroll />
             <Navigations services={services} products={products}/>
             <div>
                 {/* Header Section*/}
@@ -31,10 +34,10 @@ export default function AboutUs(){
                         2xl:translate-y-[5%]
                         translate-y-[5%]
                     ">
-                        <Navbar services={services} products={products}/>
+                        <Navbar  services={services} products={products}/>
                         <div className="translate-x-[10%] lg:translate-x-0">
-                            <ul className="mt-[2px]md:mt-[1em] space-y-1 md:space-y-2">
-                                <li className="flex flex-col justify-center about-list group hover:bg-bpp-color-300/80 md:hover:bg-bpp-color-300 transition-all duration-[150] ease-out-in rounded-l-full rounded-r-0 lg:rounded-full py-[2px] md:py-0">
+                            <ul className="mt-[2px]md:mt-[1em] space-y-1 md:space-y-2 md:mt-[.5em]">
+                                <li data-aos="fade-down" data-aos-easing="ease-in-sine" className="flex flex-col justify-center about-list group hover:bg-bpp-color-300/80 md:hover:bg-bpp-color-300 transition-all duration-[150] ease-out-in rounded-l-full rounded-r-0 lg:rounded-full py-[2px] md:py-0">
                                     <div className="inline-flex space-x-[1em] justify-start items-start my-[1px] md:my-[5px] xl:my-[9px] 2xl:my-[2em] ps-[2em] 2xl:ps-[1em]">
                                         <span className="group-hover:!text-bpp-color-100 transition-all duration-[150] ease-out-in">
                                             <svg className="icon w-[16px] h-[16px] md:w-[20px] md:h-[20px] xl:w-[32px] h-[24px] xl:h-[32px] 2xl:w-[44px] 2xl:h-[44px]" viewBox="0 0 46 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -59,13 +62,13 @@ export default function AboutUs(){
                                         </span>
                                         <div className="flex flex-col items-start w-[220px] md:w-[320px] lg:w-[400px] ">
                                             <h2 className="text-[14px] md:text-[18px] xl:text-[20px] 2xl:text-[24px] text-bpp-color-300 font-[700] leading-[12px] md:leading-[24px] group-hover:!text-bpp-color-100 transition-all duration-[150] ease-out-in">Vision</h2>
-                                            <p className="text-[8px] md:text-[11px] xl:text-[14px] font-[400] leading-[12px] md:leading-[24px] group-hover:!text-bpp-color-100 transition-all duration-[150] ease-out-in pe-[4em] md:pe-0">
+                                            <p className="text-[8px] text-[#000] md:text-[11px] xl:text-[14px] font-[400] leading-[12px] md:leading-[24px] group-hover:!text-bpp-color-100 transition-all duration-[150] ease-out-in pe-[4em] md:pe-0">
                                                 Our vision is to provide the best services, making every client feel special, confident, and beautiful.
                                             </p>
                                         </div>
                                     </div>
                                 </li>
-                                <li className="flex flex-col justify-center about-list group hover:bg-bpp-color-300/80 md:hover:bg-bpp-color-300 transition-all duration-[150] ease-out-in rounded-l-full rounded-r-0 lg:rounded-full py-[2px] md:py-0">
+                                <li data-aos="fade-down" data-aos-easing="ease-in-sine" className="flex flex-col justify-center about-list group hover:bg-bpp-color-300/80 md:hover:bg-bpp-color-300 transition-all duration-[150] ease-out-in rounded-l-full rounded-r-0 lg:rounded-full py-[2px] md:py-0">
                                     <div className="inline-flex space-x-[1em] justify-start items-start my-[1px] md:my-[5px] xl:my-[9px] 2xl:my-[2em] ps-[2em] 2xl:ps-[1em]">
                                         <span className="group-hover:!text-bpp-color-100 transition-all duration-[150] ease-out-in">
                                            <svg className="icon w-[16px] h-[16px] md:w-[20px] md:h-[20px] xl:w-[32px] h-[24px] xl:h-[32px] 2xl:w-[44px] 2xl:h-[44px]" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -83,13 +86,13 @@ export default function AboutUs(){
                                         </span>
                                         <div className="flex flex-col items-start w-[220px] md:w-[320px] lg:w-[400px] ">
                                             <h2 className="text-[14px] md:text-[18px] xl:text-[20px] 2xl:text-[24px] text-bpp-color-300 font-[700] leading-[12px] md:leading-[24px] group-hover:!text-bpp-color-100 transition-all duration-[150] ease-out-in">Mission Statement</h2>
-                                            <p className="text-[8px] md:text-[11px] xl:text-[14px] font-[400] leading-[12px] md:leading-[24px] group-hover:!text-bpp-color-100 transition-all duration-[150] ease-out-in pe-[4em] md:pe-0">
+                                            <p className="text-[8px] text-[#000] md:text-[11px] xl:text-[14px] font-[400] leading-[12px] md:leading-[24px] group-hover:!text-bpp-color-100 transition-all duration-[150] ease-out-in pe-[4em] md:pe-0">
                                                 To empower women by offering exceptional beauty and spa services that help them look and feel their best, no matter how busy life gets.
                                             </p>
                                         </div>
                                     </div>
                                 </li>
-                                <li className="flex flex-col justify-center about-list group hover:bg-bpp-color-300/80 md:hover:bg-bpp-color-300 transition-all duration-[150] ease-out-in rounded-l-full rounded-r-0 lg:rounded-full py-[2px] md:py-0">
+                                <li data-aos="fade-down" data-aos-easing="ease-in-sine" className="flex flex-col justify-center about-list group hover:bg-bpp-color-300/80 md:hover:bg-bpp-color-300 transition-all duration-[150] ease-out-in rounded-l-full rounded-r-0 lg:rounded-full py-[2px] md:py-0">
                                     <div className="inline-flex space-x-[1em] justify-start items-start my-[1px] md:my-[5px] xl:my-[9px] 2xl:my-[2em] ps-[2em] 2xl:ps-[1.5em]">
                                         <span className="group-hover:!text-bpp-color-100 transition-all duration-[150] ease-out-in">
                                            <svg className="icon w-[16px] h-[16px] md:w-[20px] md:h-[20px] xl:w-[32px] h-[24px] xl:h-[32px] 2xl:w-[44px] 2xl:h-[44px]" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -102,7 +105,7 @@ export default function AboutUs(){
                                         </span>
                                         <div className="flex flex-col items-start w-[220px] md:w-[400px] xl:w-[220px] ">
                                             <h2 className="text-[14px] md:text-[18px] xl:text-[20px] 2xl:text-[24px] text-bpp-color-300 font-[700] leading-[12px] md:leading-[24px] group-hover:!text-bpp-color-100 transition-all duration-[150] ease-out-in">Core Values</h2>
-                                            <ul className="flex items-center flex-wrap gap-[10px] xl:gap-[12px] my-2 text-[8px] md:text-[11px] xl:text-[14px] font-[400] group-hover:!text-bpp-color-100 transition-all duration-[150] ease-out-in">
+                                            <ul className="flex items-center text-[#000] flex-wrap gap-[10px] xl:gap-[12px] my-2 text-[8px] md:text-[11px] xl:text-[14px] font-[400] group-hover:!text-bpp-color-100 transition-all duration-[150] ease-out-in">
                                                 <li>
                                                     Passion
                                                 </li>
@@ -129,13 +132,13 @@ export default function AboutUs(){
                 {/* Business Registration Section*/}
                 <section className="bg-[#ffffff] w-full h-full overflow-hidden">
                     <div className="w-full max-w-screen-lg mx-auto flex flex-wrap items-center justify-center">
-                        <div>
+                        <div data-aos="fade-right" data-aos-easing="ease-in-sine">
                             <h2 className="text-center md:text-start text-bpp-color-300 text-[24px] md:text-[30px] font-[700] leading-[30px] w-[270px] md:w-[400px]">
                                 Business Registration
                                 Certificate
                             </h2>
                         </div>
-                        <div>
+                        <div data-aos="fade-left" data-aos-easing="ease-in-sine">
                             <img src={cert} alt="br"
                                  className="w-[600px] h-full object-center object-contain"
                             />
@@ -143,9 +146,9 @@ export default function AboutUs(){
                     </div>
                 </section>
                 {/* Pin Section*/}
-                <section className="bg-gradient-to-br from-bpp-color-300 to-bpp-color-200">
+                <section className="bg-gradient-to-br from-bpp-color-300 to-bpp-color-200 overflow-hidden">
                     <div className="w-full max-w-screen-xl mx-auto grid grid-cols-12 items-center xl:justify-center h-full md:min-h-screen px-3 py-[1.5em] md:py-0">
-                        <div className="col-span-12 xl:col-span-3">
+                        <div data-aos="fade-right" data-aos-easing="ease-in-sine" className="col-span-12 xl:col-span-3">
                             <h2 className="text-center xl:text-start text-[#ffffff] text-[24px] md:text-[34px] xl:text-[30px] font-[700] xl:leading-[30px] xl:w-[270px]">
                                 Future
                                 Business Plan
@@ -154,7 +157,7 @@ export default function AboutUs(){
                                 Our plan is to scale our operations and open branches in 25 provinces nationwide.
                             </p>
                         </div>
-                        <div className="col-span-12 xl:col-span-9">
+                        <div data-aos="fade-left" data-aos-easing="ease-in-sine" className="col-span-12 xl:col-span-9">
                             <img src={pin} alt="PIN"
                                  className="w-full h-full object-center object-contain"
                             />
@@ -168,12 +171,13 @@ export default function AboutUs(){
                              className="absolute inset-0 w-full h-full object-center object-cover"/>
                         <div className="absolute inset-0 bg-gradient-to-br from-[#ffffff]/70 via-bpp-color-100/80 to-[#ffffff]/40"></div>
                         <div className="relative">
-                            <h1 className="text-bpp-color-300 font-[400] text-[40px] md:text-[80px] lg:text-[120px] leading-[40px]">Your Beauty, Our Passion</h1>
+                            <h1 data-aos="fade-left" data-aos-easing="ease-in-sine" className="text-bpp-color-300 font-[400] text-[40px] md:text-[80px] lg:text-[120px] leading-[40px]">Your Beauty, Our Passion</h1>
                         </div>
                     </div>
                 </section>
                 {/* Footer Section*/}
                 <Footer />
+                <GoToTop/>
             </div>
             <div className="w-full bg-[#ffffff] py-[1em] text-center text-bpp-color-300 font-[700]">
                 All right reserved 2025

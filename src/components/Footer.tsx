@@ -13,14 +13,17 @@ export default function Footer() {
                 <div className="grid grid-cols-12 items-start justify-center space-y-[2em] xl:space-x-[5em] my-[3em]">
                     <div className="col-span-12 xl:col-span-6">
                         <ul className="space-y-[1em]">
-                            <li className="flex justify-start items-center space-x-[.5em]">
+                            <li
+                                className="flex justify-start items-center space-x-[.5em]">
                                 <img src={
                                     Logo
                                 }
                                      alt="Logo Navbar"
                                      className="w-[4rem] rounded-full"
+                                     data-aos="fade-right" data-aos-easing="ease-in-sine"
                                 />
-                                <h2 className="
+                                <h2 data-aos="fade-left" data-aos-easing="ease-in-sine"
+                                    className="
                                         text-[16px]
                                         xl:text-[20px]
                                         text-[#ffffff]
@@ -29,7 +32,7 @@ export default function Footer() {
                                     ពោធិ៍ព្រឹក្សបាយ៍ន ស្បា និងសាឡន
                                 </h2>
                             </li>
-                            <li>
+                            <li data-aos="fade-right" data-aos-easing="ease-in-sine">
                                 <p
                                     className="
                                         text-[15px]
@@ -41,7 +44,7 @@ export default function Footer() {
                                 </p>
                             </li>
                             <li>
-                                <h2
+                                <h2 data-aos="fade-left" data-aos-easing="ease-in-sine"
                                     className="
                                         text-[15px]
                                         text-[#ffffff]
@@ -49,7 +52,7 @@ export default function Footer() {
                                         leading-[23px]
                                     "
                                 >Operation Hour : 7:30am -8:30pm </h2>
-                                <h2
+                                <h2 data-aos="fade-left" data-aos-easing="ease-in-sine"
                                     className="
                                         text-[15px]
                                         text-[#ffffff]
@@ -57,7 +60,7 @@ export default function Footer() {
                                         leading-[23px]
                                     "
                                 >Mon - Sun</h2>
-                                <h2
+                                <h2 data-aos="fade-right" data-aos-easing="ease-in-sine"
                                     className="
                                         text-[15px]
                                         text-[#ffffff]
@@ -67,7 +70,8 @@ export default function Footer() {
                                 >076 3 9999 66</h2>
                             </li>
                             <li>
-                                <h2 className="
+                                <h2 data-aos="fade-left" data-aos-easing="ease-in-sine"
+                                    className="
                                         text-[15px]
                                         text-[#ffffff]
                                         font-[700]
@@ -75,18 +79,18 @@ export default function Footer() {
                                     ">Follow Us</h2>
                             </li>
                             <li className="inline-flex items-center my-[1em] space-x-3">
-                                <span>
+                                <span data-aos="fade-right" data-aos-easing="ease-in-sine">
                                     <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M17.5 35C27.165 35 35 27.165 35 17.5C35 7.83501 27.165 0 17.5 0C7.83501 0 0 7.83501 0 17.5C0 27.165 7.83501 35 17.5 35Z" fill="white"/>
                                         <path d="M8.00766 17.1206L24.8806 10.615C25.6637 10.3321 26.3477 10.8061 26.0939 11.9902L26.0954 11.9888L23.2224 25.5236C23.0095 26.4831 22.4393 26.7165 21.6416 26.2644L17.2666 23.04L15.1564 25.0729C14.9231 25.3063 14.7262 25.5031 14.2741 25.5031L14.5847 21.0509L22.6931 13.7256C23.046 13.415 22.6143 13.24 22.1491 13.5492L12.1289 19.8579L7.80933 18.5104C6.87162 18.2129 6.85121 17.5727 8.00766 17.1206Z" fill="#662D91"/>
                                     </svg>
                                 </span>
-                                <span>
+                                <span data-aos="fade-right" data-aos-easing="ease-in-sine">
                                     <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M17.5 0C7.85054 0 0 7.85054 0 17.5C0 27.1488 7.85054 35 17.5 35C27.1488 35 35 27.1488 35 17.5C35 7.85054 27.1502 0 17.5 0ZM21.8521 18.1161H19.005V28.2639H14.7861C14.7861 28.2639 14.7861 22.7191 14.7861 18.1161H12.7807V14.5295H14.7861V12.2097C14.7861 10.5482 15.5756 7.95205 19.0437 7.95205L22.17 7.96403V11.4456C22.17 11.4456 20.2703 11.4456 19.9009 11.4456C19.5315 11.4456 19.0064 11.6302 19.0064 12.4226V14.5302H22.2208L21.8521 18.1161Z" fill="white"/>
                                     </svg>
                                 </span>
-                                <span>
+                                <span data-aos="fade-right" data-aos-easing="ease-in-sine">
                                     <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M34.7929 17.6033C34.7929 7.99545 27.0043 0.206787 17.3965 0.206787C7.78866 0.206787 0 7.99545 0 17.6033C0 27.2111 7.78866 34.9997 17.3965 34.9997C27.0043 34.9997 34.7929 27.2111 34.7929 17.6033Z" fill="white"/>
                                         <path d="M21.5168 8.448H13.2764C11.9408 8.448 10.6599 8.97856 9.71553 9.92296C8.77113 10.8674 8.24057 12.1482 8.24057 13.4838V21.7243C8.24057 23.0598 8.77113 24.3407 9.71553 25.2851C10.6599 26.2295 11.9408 26.7601 13.2764 26.7601H21.5168C22.8524 26.7601 24.1333 26.2295 25.0777 25.2851C26.0221 24.3407 26.5526 23.0598 26.5526 21.7243V13.4838C26.5526 12.1482 26.0221 10.8674 25.0777 9.92296C24.1333 8.97856 22.8524 8.448 21.5168 8.448ZM24.9503 21.0009C24.9503 22.1034 24.5124 23.1607 23.7328 23.9403C22.9533 24.7198 21.896 25.1578 20.7935 25.1578H13.9997C12.8973 25.1578 11.8399 24.7198 11.0604 23.9403C10.2808 23.1607 9.84288 22.1034 9.84288 21.0009V14.2071C9.84288 13.1047 10.2808 12.0474 11.0604 11.2678C11.8399 10.4883 12.8973 10.0503 13.9997 10.0503H20.7935C21.896 10.0503 22.9533 10.4883 23.7328 11.2678C24.5124 12.0474 24.9503 13.1047 24.9503 14.2071V21.0009Z" fill="#662D91"/>
@@ -100,7 +104,8 @@ export default function Footer() {
                     <div className="col-span-12 xl:col-span-6">
                         <ul>
                             <li>
-                                <h2 className="
+                                <h2 data-aos="fade-right" data-aos-easing="ease-in-sine"
+                                    className="
                                         text-[15px]
                                         text-[#ffffff]
                                         font-[700]
@@ -108,7 +113,7 @@ export default function Footer() {
                                     ">Address : </h2>
                             </li>
                             <li>
-                                <p
+                                <p data-aos="fade-left" data-aos-easing="ease-in-sine"
                                     className="
                                         text-[15px]
                                         text-[#ffffff]
@@ -120,7 +125,7 @@ export default function Footer() {
                                     Shop House #369D, Street 777, Borey Vimean Phnom Penh Thmey Project 598
                                 </p>
                             </li>
-                            <li>
+                            <li data-aos="fade-up" data-aos-easing="ease-in-sine">
                                 <iframe
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4957.854812212375!2d104.8653555759997!3d11.532219888666331!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310951853bf850ef%3A0x9c10aa6e388880d!2sISI%20Tower!5e1!3m2!1sen!2skh!4v1739161805094!5m2!1sen!2skh"
                                     className="w-full md:w-[434px] h-[267px]" loading="lazy"

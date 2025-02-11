@@ -2,7 +2,7 @@
 export default function WhyUs() {
     return(
         <section className="bg-bpp-color-300 p-0 overflow-hidden">
-            <h2
+            <h2 data-aos="fade-up" data-aos-easing="ease-in-sine"
                 className="text-start text-[#ffffff] text-[18px] xl:text-[22px] font-bold mt-[3em] ms-[1em] md:ms-[9em] lg:ms-[14em] 2xl:ms-[10em] mb-[1em]"
             >Why Choose Us?</h2>
             <div className="
@@ -19,7 +19,8 @@ export default function WhyUs() {
             ">
                 <div className="hidden xl:block overflow-hidden">
                     <div className="flex flex-wrap lg:justify-center items-center my-[1em] space-y-[1em]">
-                        <div className="inline-flex space-x-4">
+                        <div data-aos="fade-left" data-aos-easing="ease-in-sine"
+                            className="inline-flex space-x-4">
                             <h2
                                 className="
                             text-[54px] 2xl:text-[60px]
@@ -46,7 +47,7 @@ export default function WhyUs() {
                             ">We believe everyone deserves to feel pampered without breaking the bank. Our services are high-quality yet affordable, making beauty and relaxation accessible to all.</p>
                             </div>
                         </div>
-                        <div className="inline-flex space-x-4">
+                        <div data-aos="fade-right" data-aos-easing="ease-in-sine" className="inline-flex space-x-4">
                             <h2
                                 className="
                             text-[54px] 2xl:text-[60px]
@@ -73,7 +74,8 @@ export default function WhyUs() {
                             ">We believe everyone deserves to feel pampered without breaking the bank. Our services are high-quality yet affordable, making beauty and relaxation accessible to all.</p>
                             </div>
                         </div>
-                        <div className="inline-flex space-x-4">
+                        <div data-aos="fade-left" data-aos-easing="ease-in-sine"
+                            className="inline-flex space-x-4">
                             <h2
                                 className="
                             text-[54px] 2xl:text-[60px]
@@ -100,7 +102,7 @@ export default function WhyUs() {
                             ">We believe everyone deserves to feel pampered without breaking the bank. Our services are high-quality yet affordable, making beauty and relaxation accessible to all.</p>
                             </div>
                         </div>
-                        <div className="inline-flex space-x-4">
+                        <div data-aos="fade-right" data-aos-easing="ease-in-sine" className="inline-flex space-x-4">
                             <h2
                                 className="
                             text-[54px] 2xl:text-[60px]
@@ -127,7 +129,8 @@ export default function WhyUs() {
                             ">We believe everyone deserves to feel pampered without breaking the bank. Our services are high-quality yet affordable, making beauty and relaxation accessible to all.</p>
                             </div>
                         </div>
-                        <div className="inline-flex space-x-4">
+                        <div data-aos="fade-left" data-aos-easing="ease-in-sine"
+                            className="inline-flex space-x-4">
                             <h2
                                 className="
                             text-[54px] 2xl:text-[60px]
