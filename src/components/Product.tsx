@@ -139,7 +139,7 @@ export default function Product() {
                     </form>
                     <div className="mt-[2em]">
                         <form className="space-y-4 pb-[4em] md:pb-0" onSubmit={handleSubmit}>
-                            <div data-aos="fade-down" data-aos-easing="ease-in-sine">
+                            <div >
                                 <label className="text-bpp-color-100" htmlFor="product_name">
                                     Product Name
                                 </label>
@@ -153,7 +153,7 @@ export default function Product() {
                                     required
                                 />
                             </div>
-                            <div data-aos="fade-down" data-aos-easing="ease-in-sine">
+                            <div >
                                 <label className="text-bpp-color-100" htmlFor="price">
                                     Price
                                 </label>
@@ -167,7 +167,7 @@ export default function Product() {
                                     required
                                 />
                             </div>
-                            <div data-aos="fade-down" data-aos-easing="ease-in-sine">
+                            <div >
                                 <label className="text-bpp-color-100" htmlFor="amount">
                                     Total Amount
                                 </label>
@@ -222,7 +222,7 @@ export default function Product() {
                                 </div>
                             </div>
 
-                            <div data-aos="fade-down" data-aos-easing="ease-in-sine">
+                            <div >
                                 <label className="text-bpp-color-100" htmlFor="name">
                                     Name
                                 </label>
@@ -254,7 +254,7 @@ export default function Product() {
                                     {error.email && <p className="text-[#ff0000]">{error.email}</p>}
                                 </div>
 
-                                <div data-aos="fade-right" data-aos-easing="ease-in-sine">
+                                <div >
                                     <label className="text-bpp-color-100" htmlFor="phone">
                                         Phone
                                     </label>
@@ -270,7 +270,7 @@ export default function Product() {
                                 </div>
                             </div>
 
-                            <div data-aos="fade-down" data-aos-easing="ease-in-sine">
+                            <div >
                                 <label className="text-bpp-color-100" htmlFor="address">
                                     Address
                                 </label>
@@ -284,7 +284,7 @@ export default function Product() {
                                 {error.address && <p className="text-[#ff0000]">{error.email}</p>}
                             </div>
 
-                            <div className="mt-4" data-aos="fade-down" data-aos-easing="ease-in-sine">
+                            <div className="mt-4" >
                                 <button
                                     type="submit"
                                     className="inline-block w-full rounded-lg bg-bpp-color-200 hover:bg-bpp-color-100 hover:shadow-md float-end px-5 py-3 font-medium text-bpp-color-300 sm:w-auto"

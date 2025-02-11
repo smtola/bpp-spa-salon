@@ -102,8 +102,7 @@ export default function Services() {
                     className="mySwiper transition-all duration-[150]" // Add padding-top for pagination space
                 >
                     {Array.from({ length: 10 }).map((_, index) => (
-                        <SwiperSlide data-aos="fade-left"
-                                     data-aos-easing="ease-in-sine"
+                        <SwiperSlide
                             key={index} className="transition-all duration-[150]">
                             <div className="bg-[#ffffff] rounded-[20px] ">
                                 <div>
@@ -149,7 +148,7 @@ export default function Services() {
                     </form>
                     <div className="mt-[2em]">
                         <form onClick={handleSubmit} className="space-y-4">
-                            <div data-aos="fade-down" data-aos-easing="ease-in-sine">
+                            <div>
                                 <label className="text-bpp-color-100" htmlFor="product_name">Product Name</label>
                                 <input
                                     className="w-full rounded-lg border-gray-200 p-3 text-sm text-bpp-color-300"
@@ -161,7 +160,7 @@ export default function Services() {
                                     id="product_name"
                                 />
                             </div>
-                            <div data-aos="fade-down" data-aos-easing="ease-in-sine">
+                            <div>
                                 <label className="text-bpp-color-100" htmlFor="name">Name</label>
                                 <input
                                     className="w-full rounded-lg border-gray-200 p-3 text-sm text-bpp-color-300"
@@ -174,7 +173,7 @@ export default function Services() {
                             </div>
 
                             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                                <div data-aos="fade-left" data-aos-easing="ease-in-sine">
+                                <div >
                                     <label className="text-bpp-color-100" htmlFor="email">Email</label>
                                     <input
                                         className="w-full rounded-lg border-gray-200 p-3 text-sm text-bpp-color-300"
@@ -187,7 +186,7 @@ export default function Services() {
                                     {error.email && <p className="text-[#ff0000]">{error.email}</p>}
                                 </div>
 
-                                <div data-aos="fade-rith" data-aos-easing="ease-in-sine">
+                                <div>
                                     <label className="text-bpp-color-100" htmlFor="phone">Phone</label>
                                     <input
                                         className="w-full rounded-lg border-gray-200 p-3 text-sm text-bpp-color-300"
@@ -201,7 +200,7 @@ export default function Services() {
                                 </div>
                             </div>
 
-                            <div data-aos="fade-down" data-aos-easing="ease-in-sine">
+                            <div>
                                 <label className="text-bpp-color-100" htmlFor="at">Arrival Time</label>
                                 <input
                                     className="w-full rounded-lg border-gray-200 p-3 text-sm text-bpp-color-300"
@@ -213,7 +212,7 @@ export default function Services() {
                                 />
                             </div>
 
-                            <div data-aos="fade-down" data-aos-easing="ease-in-sine">
+                            <div>
                                 <label className="text-bpp-color-100" htmlFor="message">Message</label>
 
                                 <textarea

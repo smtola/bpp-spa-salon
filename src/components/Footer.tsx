@@ -120,7 +120,7 @@ export default function Footer() {
                                         font-[400]
                                         leading-[28px]
                                         mb-[1em]
-                                        w-[434px]
+                                        md:w-[434px]
                                     ">
                                     Shop House #369D, Street 777, Borey Vimean Phnom Penh Thmey Project 598
                                 </p>

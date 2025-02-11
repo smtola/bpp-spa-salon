@@ -31,7 +31,7 @@ export default function Home(){
                         translate-y-[5%]
                     ">
                         <Navbar services={services} products={products}/>
-                        <div className="md:translate-x-[12.5%] xl:translate-x-0">
+                        <div className="translate-x-[-6%] md:translate-x-[12.5%] xl:translate-x-0">
                             <h1 data-aos="fade-left"
                                 className="text-[18px] md:text-[28px] lg:text-[38px] xl:text-[48px] text-bpp-color-300 text-center mt-[.5em] xl:mt-[1em] 2xl:mt-[1.4em] md:leading-[67px]">Welcome to</h1>
                             <h2 data-aos="fade-right"
