@@ -421,7 +421,7 @@ export default function Services() {
                                 <div>
                                     <label className="text-bpp-color-100" htmlFor="at">Arrival Time</label>
                                     <input
-                                        className="w-full rounded-lg border-gray-200 p-3 text-sm text-bpp-color-300"
+                                        className="w-full appearance-none rounded-lg border-gray-200 p-3 text-sm text-bpp-color-300"
                                         placeholder="Arrival Time"
                                         type="datetime-local"
                                         id="at"
