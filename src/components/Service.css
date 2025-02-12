@@ -42,3 +42,21 @@
     opacity: 0.5;
     cursor: not-allowed;
 }
+
+@media screen and (max-width: 360px ) {
+    .text-customize{
+        font-size: 10px !important;
+    }
+    .text-customize-1{
+        font-size: 11px !important;
+    }
+    .p-customize{
+        padding: 2px 7px !important;
+    }
+    .p-customize-1{
+        padding: 2px 10px !important;
+    }
+    .h-customize{
+        height: 170px !important;
+    }
+}

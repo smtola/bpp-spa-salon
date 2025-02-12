@@ -2,6 +2,7 @@ import Logo from '../assets/images/logo_white.png';
 import { Link, useLocation } from "react-router-dom";
 import {RefObject, useEffect, useState} from "react";
 import { useTranslation } from 'react-i18next';
+import "./Service.css";
 import '../i18n';
 interface navProp{
     services:RefObject<HTMLDivElement>,
@@ -64,16 +65,17 @@ export default function Navigations({services,products}:navProp){
                     />
                 </Link>
                 <h2 className="
+                text-customize
                 text-[12px]
                 lg:text-[14px]
-                xl:text-[20px]
+                xl:text-[18px]
                 text-bpp-color-300
                 font-bold
                 font-['Moulpali']">
                     ពោធិ៍ព្រឹក្សបាយ៍ន ស្បា និងសាឡន
                 </h2>
             </div>
-            <div className="hidden md:flex md:col-span-8 lg:col-span-8 2xl:col-span-6 justify-end xl:justify-center items-center space-x-[.5em] xl:space-x-[1em] 2xl:space-x-[2em] pe-2 xl:pe-0">
+            <div className="hidden md:flex md:col-span-8 lg:col-span-8 2xl:col-span-6 justify-end  items-center space-x-[.5em] xl:space-x-[1em] 2xl:space-x-[2em] pe-2 xl:pe-0">
                 <ul className="flex flex-wrap justify-start lg:flex-nowrap lg:items-center lg:space-x-4 !text-bpp-color-300">
                     <li className="
                             flex
@@ -140,8 +142,8 @@ export default function Navigations({services,products}:navProp){
             </div>
             <div className="md:hidden flex justify-end items-center gap-2">
                 <div className="border-2 border-bpp-color-300 w-full rounded-full flex">
-                    <button onClick={()=>triggerKhClick('kh')} className={`text-center rounded-full transition-all duration-[150] font-['Kantumruy_Pro'] ${lang != 'en' ? 'bg-bpp-color-300  px-4 py-1 text-[#ffffff]': 'px-2 py-1 text-bpp-color-300'}`}>ខ្មែរ</button>
-                    <button onClick={()=>triggerEnClick('en')} className={`text-center rounded-full transition-all duration-[150] ${lang == 'en' ? 'bg-bpp-color-300  px-4 py-1 text-[#ffffff]': 'px-2 py-1 text-bpp-color-300'}`}>EN</button>
+                    <button onClick={()=>triggerKhClick('kh')} className={`text-center rounded-full transition-all duration-[150] font-['Kantumruy_Pro'] ${lang != 'en' ? 'bg-bpp-color-300  px-4 py-1 text-[#ffffff] p-customize-1': 'p-customize px-2 py-1 text-bpp-color-300'}`}>ខ្មែរ</button>
+                    <button onClick={()=>triggerEnClick('en')} className={`text-center rounded-full transition-all duration-[150] ${lang == 'en' ? 'bg-bpp-color-300  px-4 py-1 text-[#ffffff] p-customize-1': 'p-customize px-2 py-1 text-bpp-color-300'}`}>EN</button>
                 </div>
                 <button onClick={handleOpenNav}>
                     <svg width="30" height="26" viewBox="0 0 30 26" fill="none" xmlns="http://www.w3.org/2000/svg">

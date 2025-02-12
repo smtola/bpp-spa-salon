@@ -288,17 +288,17 @@ export default function Product() {
                 {product && product.map((product, index)=>
             <div key={index} data-aos="fade-right" data-aos-easing="ease-in-sine"
                 className="col-span-6 md:col-span-4 lg:col-span-3 h-full bg-[#ffffff] rounded-[12px] p-2 overflow-hidden transition-all duration-[150]">
-                <div className="bg-bpp-color-100/30 rounded-[12px] h-[186px] md:h-[205px] overflow-hidden">
+                <div className="bg-bpp-color-100/30 rounded-[12px] h-customize h-[186px] md:h-[205px] overflow-hidden">
                     <img src={product.image_url} alt={product.pro_name} className="w-full h-full object-contain object-center p-1"/>
                 </div>
                 <div className="flex flex-col">
                     <div>
                         <div className="inline-flex items-end space-x-2">
-                            <h2 className="text-bpp-color-300 text-[14px] md:text-[18px] font-bold">RESTORE</h2>
-                            <h3 className="text-bpp-color-300 text-[12px] md:text-[14px] font-bold">Premium</h3>
+                            <h2 className="text-bpp-color-300 text-customize-1 text-[14px] md:text-[18px] font-bold">RESTORE</h2>
+                            <h3 className="text-bpp-color-300 text-customize text-[12px] md:text-[14px] font-bold">Premium</h3>
                         </div>
-                        <h2 className="text-bpp-color-300 text-[14px] md:text-[16px] font-bold">{product.pro_name}</h2>
-                        <p className="text-bpp-color-300 text-[11px] md:text-[12px] font-bold text-pretty">{product.description}</p>
+                        <h2 className="text-bpp-color-300 text-customize-1 text-[14px] md:text-[16px] font-bold">{product.pro_name}</h2>
+                        <p className="text-bpp-color-300 text-customize text-[11px] md:text-[12px] font-bold text-pretty">{product.description}</p>
                     </div>
                     <div className="w-full inline-flex justify-between items-end space-x-[2em] md:space-x-[4em] space-y-[10px]">
                         <h2 className="text-bpp-color-300 font-bold bg-bpp-color-100/40 rounded-full px-[14px] py-[1px]">

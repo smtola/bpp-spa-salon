@@ -9,6 +9,7 @@ import Footer from "../components/Footer";
 import {useRef} from "react";
 import GoToTop from "../components/GoToTop";
 import Scroll from "../components/Scroll";
+import "./Home.css";
 export default function Home(){
     const services = useRef<HTMLDivElement>(null);
     const products = useRef<HTMLDivElement>(null);
@@ -18,7 +19,7 @@ export default function Home(){
             <Navigations services={services} products={products}/>
             <div>
                 {/* Header Section*/}
-                <header className="relative flex flex-col justify-end items-center overflow-hidden min-h-[38vh] md:min-h-[45vh] lg:min-h-[48vh] xl:min-h-screen">
+                <header className="res-mb relative flex flex-col justify-end items-center overflow-hidden min-h-[42vh] md:min-h-[45vh] lg:min-h-[48vh] xl:min-h-[88vh] 2xl:min-h-screen">
                     <div>
                         <img src={banner_1} alt="banner"
                              className="absolute inset-0 w-full object-contain object-center"
@@ -35,7 +36,7 @@ export default function Home(){
                             <h1 data-aos="fade-left"
                                 className="text-[18px] md:text-[28px] lg:text-[38px] xl:text-[48px] text-bpp-color-300 text-center mt-[.5em] xl:mt-[1em] 2xl:mt-[1.4em] md:leading-[67px]">Welcome to</h1>
                             <h2 data-aos="fade-right"
-                                className="text-[20px] md:text-[30px] lg:text-[40px] xl:text-[50px] text-bpp-color-300 text-center leading-[1px] font-bold">
+                                className="text-[16px] md:text-[30px] lg:text-[40px] xl:text-[50px] text-bpp-color-300 text-center leading-[1px] font-bold">
                                 BPP Spa & Salon
                             </h2>
                             <h1 data-aos="fade-left"
@@ -43,21 +44,21 @@ export default function Home(){
                         </div>
                     </div>
                     <div
-                        className="relative flex flex-col justify-end w-full xl:max-w-[140vh] md:max-w-[64vh] md:px-0 px-3">
+                        className="relative flex flex-col justify-end w-full max-w-screen-xl h-full px-3 mx-auto">
                         <h2 data-aos="fade-right"
                             data-aos-easing="ease-in-sine"
-                            className="text-bpp-color-300  font-bold text-[20px] md:text-[24px]">
+                            className="text-bpp-color-300  font-bold text-[16px] md:text-[24px]">
                             BPP Spa and Salon
                         </h2>
                         <p data-aos="fade-left"
                            data-aos-easing="ease-in-sine"
-                            className="text-[10px] md:text-[11px] lg:text-[16px] text-[#000]">
+                            className="text-[12px] md:text-[11px] lg:text-[16px] text-[#000]">
                             was founded in early 2025 by a passionate Cambodian woman entrepreneur. Recognizing the challenges modern women face—juggling work, family, and personal care—the owner envisioned a sanctuary where women could feel beautiful and rejuvenated despite their busy lives. At BPP Spa and Salon, we offer exceptional services from head to toe, including hair, eyes, facial, armpit, nail, and body spa treatments. Conveniently located in a shop house at Borey Vimean Phnom Penh 598 project, we are your go-to destination for beauty and relaxation.
                         </p>
                     </div>
                 </header>
                 {/* Services Section*/}
-                <section ref={services} className="mt-[3em] p-0 overflow-hidden">
+                <section ref={services} className="mt-[1em] md:mt-[3em] p-0 overflow-hidden">
                     <Services/>
                 </section>
                 {/* Our Products Section*/}

@@ -1,0 +1,11 @@
+@media screen and (max-width: 360px ) {
+    .text-customize{
+        font-size: 10px !important;
+    }
+    .text-customize-1{
+        font-size: 11px !important;
+    }
+    .h-customize{
+        height: 170px !important;
+    }
+}

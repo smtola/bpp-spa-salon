@@ -283,9 +283,10 @@ export default function Services() {
             <div className="max-w-screen-lg 2xl:max-w-screen-xl mx-auto px-3 md:px-5 py-5">
             <div className="flex items-center space-x-[3em] xl:space-x-[14em] 2xl:space-x-[22em] md:pt-[2em] 2xl:pt-[3em] ">
                 <h2 className="font-bold text-[16px] md:text-[32px] text-[#ffffff]">Our Services</h2>
-                <h2 className="font-light text-[14px] md:text-[18px] text-[#ffffff]">Facial Treatment</h2>
             </div>
-            <div className="relative mt-[2em]">
+                <h2 className="font-light text-[16px] md:text-[20px] text-[#ffffff] text-center">Facial Treatment</h2>
+
+                <div className="relative mt-[2em]">
                 {/* Pagination Positioned on Top */}
                 <div className="absolute top-0 left-0 right-0">
                     <div id="custom-pagination"
@@ -326,18 +327,18 @@ export default function Services() {
                         <SwiperSlide
                             key={index} className="transition-all duration-[150] !h-full">
                             <div className="bg-[#ffffff] rounded-[20px] !h-full overflow-hidden">
-                                <div className="overflow-hidden h-[186px] md:h-[216px] lg:h-[230px] 2xl:h-[296px]">
+                                <div className="overflow-hidden h-customize h-[186px] md:h-[216px] lg:h-[230px] 2xl:h-[296px]">
                                     <img src={services.image_url} alt={`Product ${index + 1}`}
                                          className="w-full h-full object-cover object-center rounded-[20px] p-2"
                                     />
                                 </div>
                                 <div className="px-2 pb-3">
-                                    <h2 className="text-[12px] md:text-[18px] text-bpp-color-300 font-medium my-2">
+                                    <h2 className="text-customize-1 text-[12px] md:text-[18px] text-bpp-color-300 font-medium my-2">
                                         {services.product_name}
                                     </h2>
                                     <button
                                         onClick={() =>handleModalOpen(services.sv_id)}
-                                        className="bg-bpp-color-300 text-[#ffffff] py-[2px] px-[17px] rounded-full hover:bg-bpp-color-200 transition-all duration-[150]">
+                                        className="text-customize-1 bg-bpp-color-300 text-[#ffffff] py-[2px] px-[15px] rounded-full hover:bg-bpp-color-200 transition-all duration-[150]">
                                         Book Now
                                     </button>
                                 </div>

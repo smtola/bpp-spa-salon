@@ -18,7 +18,7 @@ export default function WhyUs() {
             px-3
             ">
                 <div className="hidden xl:block overflow-hidden">
-                    <div className="flex flex-wrap lg:justify-center items-center my-[1em] space-y-[1em]">
+                    <div className="flex flex-wrap lg:justify-center items-center my-[1em] space-y-[1em] ">
                         <div data-aos="fade-left" data-aos-easing="ease-in-sine"
                             className="inline-flex space-x-4">
                             <h2
