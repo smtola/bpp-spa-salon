@@ -1,6 +1,8 @@
 // Import Swiper styles
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Grid, Pagination, Navigation } from 'swiper/modules';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import 'swiper/css';
 import 'swiper/css/grid';
 import 'swiper/css/pagination';
@@ -27,7 +29,7 @@ export default function Services() {
         name: "",
         email: "",
         phone: "",
-        at: "",
+        at: new Date(),
         message:""
     });
     const [errorData, setErrorData] = useState<string | null>(null);
@@ -53,7 +55,7 @@ export default function Services() {
             product_name: productName || "",
         }));
     }, [productName]);
-    const formatDate = (isoString: string) => {
+    const formatDate = (isoString: any) => {
         const date = new Date(isoString);
         const options: Intl.DateTimeFormatOptions = {
             day: '2-digit',
@@ -223,7 +225,7 @@ export default function Services() {
                     name: "",
                     email: "",
                     phone: "",
-                    at: "",
+                    at: new Date(),
                     message: ""
                 });
 
@@ -418,15 +420,13 @@ export default function Services() {
                                     </div>
                                 </div>
 
-                                <div>
+                                <div className="flex flex-col">
                                     <label className="text-bpp-color-100" htmlFor="at">Arrival Time</label>
-                                    <input
+                                    <DatePicker
                                         className="w-full appearance-none rounded-lg border-gray-200 p-3 text-sm text-bpp-color-300"
-                                        placeholder="Arrival Time"
-                                        type="datetime-local"
                                         id="at"
-                                        value={formData.at}
-                                        onChange={handleChange}
+                                        selected={formData.at}
+                                        onChange={handleChange} //only when value has changed
                                     />
                                 </div>
 
@@ -445,7 +445,7 @@ export default function Services() {
                                 <div className="mt-4" >
                                     <button
                                         type="submit"
-                                        className="inline-block w-full rounded-lg bg-bpp-color-200 hover:bg-bpp-color-300 hover:shadow-md float-end px-5 py-3 font-medium text-bpp-color-300 sm:w-auto"
+                                        className="inline-block w-full rounded-lg bg-bpp-color-200 hover:bg-bpp-color-100 hover:shadow-md float-end px-5 py-3 font-medium text-bpp-color-300 sm:w-auto"
                                     >
                                         {!btnLoading ? <div className="flex justify-center gap-2 items-center"><span className="loading loading-spinner text-bpp-color-100"></span> <p>loading...</p></div> :<p>Book Now</p>}
                                     </button>
