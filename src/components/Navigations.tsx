@@ -11,7 +11,7 @@ export default function Navigations({services,products}:navProp){
     const [closeNav, isCloseNav] = useState<boolean>(true);
     const location = useLocation();
     const { i18n, t } = useTranslation();
-    const [lang, setLang] = useState<string | null>('kh');
+    const [lang, setLang] = useState<string | null>(null);
     useEffect(()=>{
         const localeEn = localStorage.getItem('i18nextLng');
         setLang(localeEn);
@@ -132,7 +132,7 @@ export default function Navigations({services,products}:navProp){
                     </li>
                     <li>
                         <div className="border-2 border-bpp-color-300 w-full rounded-full flex">
-                            <button onClick={()=>triggerKhClick('kh')} className={`text-center rounded-full transition-all duration-[150] font-['Kantumruy_Pro'] ${lang == 'kh' ? 'bg-bpp-color-300  px-4 py-1 text-[#ffffff]': 'px-2 py-1 text-bpp-color-300'}`}>ខ្មែរ</button>
+                            <button onClick={()=>triggerKhClick('kh')} className={`text-center rounded-full transition-all duration-[150] font-['Kantumruy_Pro'] ${lang != 'en' ? 'bg-bpp-color-300  px-4 py-1 text-[#ffffff]': 'px-2 py-1 text-bpp-color-300'}`}>ខ្មែរ</button>
                             <button onClick={()=>triggerEnClick('en')} className={`text-center rounded-full transition-all duration-[150] ${lang == 'en' ? 'bg-bpp-color-300  px-4 py-1 text-[#ffffff]': 'px-2 py-1 text-bpp-color-300'}`}>EN</button>
                         </div>
                     </li>
@@ -140,7 +140,7 @@ export default function Navigations({services,products}:navProp){
             </div>
             <div className="md:hidden flex justify-end items-center gap-2">
                 <div className="border-2 border-bpp-color-300 w-full rounded-full flex">
-                    <button onClick={()=>triggerKhClick('kh')} className={`text-center rounded-full transition-all duration-[150] font-['Kantumruy_Pro'] ${lang == 'kh' ? 'bg-bpp-color-300  px-4 py-1 text-[#ffffff]': 'px-2 py-1 text-bpp-color-300'}`}>ខ្មែរ</button>
+                    <button onClick={()=>triggerKhClick('kh')} className={`text-center rounded-full transition-all duration-[150] font-['Kantumruy_Pro'] ${lang != 'en' ? 'bg-bpp-color-300  px-4 py-1 text-[#ffffff]': 'px-2 py-1 text-bpp-color-300'}`}>ខ្មែរ</button>
                     <button onClick={()=>triggerEnClick('en')} className={`text-center rounded-full transition-all duration-[150] ${lang == 'en' ? 'bg-bpp-color-300  px-4 py-1 text-[#ffffff]': 'px-2 py-1 text-bpp-color-300'}`}>EN</button>
                 </div>
                 <button onClick={handleOpenNav}>
