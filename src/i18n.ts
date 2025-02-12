@@ -8,7 +8,7 @@ i18n
     .use(LanguageDetector) // Detect user language (from localStorage, navigator, etc.)
     .use(initReactI18next) // Bind i18next to React
     .init({
-        fallbackLng: 'en', // Default language if none is detected
+        fallbackLng: 'kh', // Default language if none is detected
         debug: false, // Set to true for debugging
         defaultNS: 'translation', // Default namespace
         ns: ['translation'], // Define namespaces
