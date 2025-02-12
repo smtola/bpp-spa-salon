@@ -27,7 +27,7 @@ export default function Home(){
             <Navigations services={services} products={products}/>
             <div>
                 {/* Header Section*/}
-                <header className="res-mb relative flex flex-col justify-end items-center overflow-hidden min-h-[43vh] md:min-h-[45vh] lg:min-h-[48vh] xl:min-h-[88vh] 2xl:min-h-screen">
+                <header className="res-mb relative flex flex-col justify-end items-center overflow-hidden min-h-[58vh] md:min-h-[45vh] lg:min-h-[48vh] xl:min-h-[88vh] 2xl:min-h-screen">
                     <div>
                         <img src={banner_1} alt="banner"
                              className="absolute inset-0 w-full object-contain object-center"

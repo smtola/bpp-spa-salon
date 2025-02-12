@@ -130,7 +130,22 @@ export default function Product() {
             }
         });
     }
+    const handleCloseModal = (e:React.FormEvent) => {
+        e.preventDefault();
+        setFormData({
+            productName: "",
+            name: "",
+            phone: "",
+            price: 0,
+            qtyChange: 0,
+            address: ""
+        });
 
+        const modal = document.getElementById(modalID) as HTMLDialogElement | null;
+        if (modal) {
+            modal.close();
+        }
+    }
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
@@ -236,7 +251,6 @@ export default function Product() {
             console.error(error);
         }
     };
-
     const formatCurrency = (value: number) => {
         return new Intl.NumberFormat("en-US", {
             style: "currency",
@@ -312,9 +326,9 @@ export default function Product() {
             {modalID && product?.map((items, idx)=>
             <dialog key={idx} id={items.pro_id} className="modal">
                 <div className="modal-box bg-bpp-color-300">
-                    <form method="dialog">
+                    <form>
                         {/* if there is a button in form, it will close the modal */}
-                        <button className="btn btn-sm btn-circle btn-ghost text-bpp-color-100 absolute right-2 top-2">✕</button>
+                        <button onClick={handleCloseModal} className="btn btn-sm btn-circle btn-ghost text-bpp-color-100 absolute right-2 top-2">✕</button>
                     </form>
                     <div className="mt-[2em]">
                         <form className="space-y-4 pb-[4em]" onSubmit={handleSubmit}>
