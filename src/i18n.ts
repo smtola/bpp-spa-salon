@@ -8,20 +8,14 @@ i18n
     .use(LanguageDetector) // Detect user language (from localStorage, navigator, etc.)
     .use(initReactI18next) // Bind i18next to React
     .init({
-        fallbackLng: 'kh', // Default language if none is detected
-        debug: false, // Set to true for debugging
-        defaultNS: 'translation', // Default namespace
-        ns: ['translation'], // Define namespaces
+        fallbackLng: 'en',
+        debug: false,
         interpolation: {
-            escapeValue: false, // React already escapes content
+            escapeValue: false,
         },
         backend: {
-            loadPath: '/locales/{{lng}}/{{ns}}.json', // Path to translation files
-        },
-        detection: {
-            order: ['localStorage', 'cookie', 'navigator'], // Detection order
-            caches: ['localStorage', 'cookie'], // Cache detected language
-        },
+            loadPath: '/locales/{{lng}}/{{ns}}.json',
+        }
     });
 
 export default i18n;
