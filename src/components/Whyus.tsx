@@ -1,10 +1,12 @@
-
+import { useTranslation } from 'react-i18next';
+import '../i18n';
 export default function WhyUs() {
+    const {t} = useTranslation();
     return(
         <section className="bg-bpp-color-300 p-0 overflow-hidden">
             <h2 data-aos="fade-up" data-aos-easing="ease-in-sine"
                 className="text-start text-[#ffffff] text-[18px] xl:text-[22px] font-bold mt-[3em] ms-[1em] md:ms-[9em] lg:ms-[14em] 2xl:ms-[10em] mb-[1em]"
-            >Why Choose Us?</h2>
+            >{t('why_choose_us')}</h2>
             <div className="
             h-full
             w-full
@@ -37,14 +39,14 @@ export default function WhyUs() {
                             font-[400]
                             leading-[24px]
                             text-bpp-color-100
-                            ">Affordable Luxury</h2>
+                            ">{t('al')}</h2>
                                 <p className="
                             text-[14px] 2xl:text-[18px]
                             font-[400]
                             leading-[24px]
                             text-bpp-color-100
                             text-pretty
-                            ">We believe everyone deserves to feel pampered without breaking the bank. Our services are high-quality yet affordable, making beauty and relaxation accessible to all.</p>
+                            ">{t('al_detail')}</p>
                             </div>
                         </div>
                         <div data-aos="fade-right" data-aos-easing="ease-in-sine" className="inline-flex space-x-4">
@@ -64,14 +66,14 @@ export default function WhyUs() {
                             font-[400]
                             leading-[24px]
                             text-bpp-color-100
-                            ">Affordable Luxury</h2>
+                            ">{t('es')}</h2>
                                 <p className="
                             text-[14px] 2xl:text-[18px]
                             font-[400]
                             leading-[24px]
                             text-bpp-color-100
                             text-pretty
-                            ">We believe everyone deserves to feel pampered without breaking the bank. Our services are high-quality yet affordable, making beauty and relaxation accessible to all.</p>
+                            ">{t('es_detail')}</p>
                             </div>
                         </div>
                         <div data-aos="fade-left" data-aos-easing="ease-in-sine"
@@ -92,14 +94,14 @@ export default function WhyUs() {
                             font-[400]
                             leading-[24px]
                             text-bpp-color-100
-                            ">Affordable Luxury</h2>
+                            ">{t('pqp')}</h2>
                                 <p className="
                             text-[14px] 2xl:text-[18px]
                             font-[400]
                             leading-[24px]
                             text-bpp-color-100
                             text-pretty
-                            ">We believe everyone deserves to feel pampered without breaking the bank. Our services are high-quality yet affordable, making beauty and relaxation accessible to all.</p>
+                            ">{t('pqp_detail')}</p>
                             </div>
                         </div>
                         <div data-aos="fade-right" data-aos-easing="ease-in-sine" className="inline-flex space-x-4">
@@ -119,14 +121,14 @@ export default function WhyUs() {
                             font-[400]
                             leading-[24px]
                             text-bpp-color-100
-                            ">Affordable Luxury</h2>
+                            ">{t('ifa')}</h2>
                                 <p className="
                             text-[14px] 2xl:text-[18px]
                             font-[400]
                             leading-[24px]
                             text-bpp-color-100
                             text-pretty
-                            ">We believe everyone deserves to feel pampered without breaking the bank. Our services are high-quality yet affordable, making beauty and relaxation accessible to all.</p>
+                            ">{t('ifa_detail')}</p>
                             </div>
                         </div>
                         <div data-aos="fade-left" data-aos-easing="ease-in-sine"
@@ -147,14 +149,14 @@ export default function WhyUs() {
                             font-[400]
                             leading-[24px]
                             text-bpp-color-100
-                            ">Affordable Luxury</h2>
+                            ">{t('exp_twapt')}</h2>
                                 <p className="
                             text-[14px] 2xl:text-[18px]
                             font-[400]
                             leading-[24px]
                             text-bpp-color-100
                             text-pretty
-                            ">We believe everyone deserves to feel pampered without breaking the bank. Our services are high-quality yet affordable, making beauty and relaxation accessible to all.</p>
+                            ">{t('exp_twapt_detail')}</p>
                             </div>
                         </div>
                     </div>
@@ -179,14 +181,14 @@ export default function WhyUs() {
                                 font-[400]
                                 leading-[24px]
                                 text-bpp-color-100
-                                ">Affordable Luxury</h2>
+                                ">{t('al')}</h2>
                                     <p className="
                                 text-[12px] md:text-[16px]
                                 font-[400]
                                 leading-[24px]
                                 text-bpp-color-100
                                 text-pretty
-                                ">We believe everyone deserves to feel pampered without breaking the bank. Our services are high-quality yet affordable, making beauty and relaxation accessible to all.</p>
+                                ">{t('al_detail')}</p>
                                 </div>
                             </div>
                             <div className="inline-flex">
@@ -208,7 +210,7 @@ export default function WhyUs() {
                                 leading-[24px]
                                 text-bpp-color-100
                                 text-end
-                                ">Affordable Luxury</h2>
+                                ">{t('es')}</h2>
                                     <p className="
                                 text-[12px] md:text-[16px]
                                 font-[400]
@@ -216,7 +218,7 @@ export default function WhyUs() {
                                 text-bpp-color-100
                                 text-pretty
                                 text-end
-                                ">We believe everyone deserves to feel pampered without breaking the bank. Our services are high-quality yet affordable, making beauty and relaxation accessible to all.</p>
+                                ">{t('es_detail')}</p>
                                 </div>
                             </div>
                             <div className="inline-flex space-x-4">
@@ -236,14 +238,14 @@ export default function WhyUs() {
                                 font-[400]
                                 leading-[24px]
                                 text-bpp-color-100
-                                ">Affordable Luxury</h2>
+                                ">{t('pqp')}</h2>
                                     <p className="
                                 text-[12px] md:text-[16px]
                                 font-[400]
                                 leading-[24px]
                                 text-bpp-color-100
                                 text-pretty
-                                ">We believe everyone deserves to feel pampered without breaking the bank. Our services are high-quality yet affordable, making beauty and relaxation accessible to all.</p>
+                                ">{t('pqp_detail')}</p>
                                 </div>
                             </div>
                             <div className="inline-flex">
@@ -265,7 +267,7 @@ export default function WhyUs() {
                                 leading-[24px]
                                 text-bpp-color-100
                                 text-end
-                                ">Affordable Luxury</h2>
+                                ">{t('ifa')}</h2>
                                     <p className="
                                 text-[12px] md:text-[16px]
                                 font-[400]
@@ -273,7 +275,7 @@ export default function WhyUs() {
                                 text-bpp-color-100
                                 text-pretty
                                 text-end
-                                ">We believe everyone deserves to feel pampered without breaking the bank. Our services are high-quality yet affordable, making beauty and relaxation accessible to all.</p>
+                                ">{t('ifa_detail')}</p>
                                 </div>
                             </div>
                             <div className="inline-flex space-x-4">
@@ -293,14 +295,14 @@ export default function WhyUs() {
                                 font-[400]
                                 leading-[24px]
                                 text-bpp-color-100
-                                ">Affordable Luxury</h2>
+                                ">{t('exp_twapt')}</h2>
                                     <p className="
                                 text-[12px] md:text-[16px]
                                 font-[400]
                                 leading-[24px]
                                 text-bpp-color-100
                                 text-pretty
-                                ">We believe everyone deserves to feel pampered without breaking the bank. Our services are high-quality yet affordable, making beauty and relaxation accessible to all.</p>
+                                ">{t('exp_twapt_detail')}</p>
                                 </div>
                             </div>
                         </div>
