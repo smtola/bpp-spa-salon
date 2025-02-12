@@ -15,13 +15,11 @@ export default function Product() {
         price: 0,
         qtyChange: 0,
         name: "",
-        email: "",
         phone: "",
         address: ""
     });
     const [error, setError] = useState({
         phone: "",
-        email: "",
         address: "",
     });
     const [isLoading, setIsLoading] = useState(true);
@@ -103,11 +101,6 @@ export default function Product() {
         return phoneRegex.test(phone);
     };
 
-    const validateEmail = (email: any) => {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    };
-
     const validateAddress = (address: any) => {
         const addressRegex = /^[A-Za-z0-9\s,.\-\/]+$/;
         return addressRegex.test(address);
@@ -142,18 +135,16 @@ export default function Product() {
         e.preventDefault();
 
         const phoneValid = validatePhone(formData.phone);
-        const emailValid = validateEmail(formData.email);
         const addressValid = validateAddress(formData.address);
 
         // Merge previous error state and update only the specific field
         setError((prevError) => ({
             ...prevError,
             phone: phoneValid ? "" : t('valid_phone'),
-            email: emailValid ? "" : t('valid_email'),
             address: addressValid ? "" : "Invalid address format",
         }));
 
-        if (!phoneValid && !emailValid) {
+        if (!phoneValid) {
             // Submit the form data here
             return;
         }
@@ -171,7 +162,6 @@ export default function Product() {
         📦 *New Ordering Product* 📦
         - 📇 *Customer Name:* ${formData.name}
         - 📞 *Phone:* ${formData.phone}
-        - ✉️ *Email:* ${formData.email}
         - 📩 *Address:* ${formData.address}
         - =============================
         - 🏷️ *Product Name:* ${formData.productName}
@@ -211,7 +201,6 @@ export default function Product() {
                             qty: formData.qtyChange,
                             total_amount: formData.price * formData.price,
                             name: formData.name,
-                            email: formData.email,
                             phone: formData.phone,
                             address: formData.address,
                         },
@@ -226,7 +215,6 @@ export default function Product() {
                 setFormData({
                     productName: "",
                     name: "",
-                    email: "",
                     phone: "",
                     price: 0,
                     qtyChange: 0,
@@ -430,20 +418,6 @@ export default function Product() {
 
                             <div
                                 className={`grid grid-cols-1 gap-4 sm:grid-cols-2 ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}>
-                                <div>
-                                    <label className="text-bpp-color-100" htmlFor="email">
-                                        {t('email')}
-                                    </label>
-                                    <input
-                                        className="w-full rounded-lg border-gray-200 p-3 text-sm text-bpp-color-300"
-                                        placeholder={t('placeholder_email')}
-                                        type="email"
-                                        id="email"
-                                        value={formData.email}
-                                        onChange={handleChange}
-                                    />
-                                    {error.email && <p className="text-[#ff0000]">{error.email}</p>}
-                                </div>
 
                                 <div >
                                     <label className="text-bpp-color-100" htmlFor="phone">
@@ -472,7 +446,7 @@ export default function Product() {
                                     value={formData.address}
                                     onChange={handleChange}
                                 ></textarea>
-                                {error.address && <p className={`text-[#ff0000] ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}>{error.email}</p>}
+                                {error.address && <p className={`text-[#ff0000] ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}>{error.address}</p>}
                             </div>
 
                             <div className="mt-4" >

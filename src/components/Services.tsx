@@ -20,7 +20,6 @@ export default function Services() {
     const [service, setService] = useState<Service[] | null>(null);
     const [error, setError] = useState({
         phone: "",
-        email: "",
     });
     const [isLoading, setIsLoading] = useState(true);
 
@@ -28,7 +27,6 @@ export default function Services() {
     const [formData, setFormData] = useState({
         product_name: "",
         name: "",
-        email: "",
         phone: "",
         at: new Date(),
         message:""
@@ -143,25 +141,18 @@ export default function Services() {
         return phoneRegex.test(phone);
     };
 
-    const validateEmail = (email: any) => {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    };
-
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
         const phoneValid = validatePhone(formData.phone);
-        const emailValid = validateEmail(formData.email);
 
         // Merge previous error state and update only the specific field
         setError((prevError) => ({
             ...prevError,
-            phone: phoneValid ? "" : t('valid_phone'),
-            email: emailValid ? "" : t('valid_email'),
+            phone: phoneValid ? "" : t('valid_phone')
         }));
 
-        if (!phoneValid && !emailValid) {
+        if (!phoneValid ) {
             // Submit the form data here
            return;
         }
@@ -179,7 +170,6 @@ export default function Services() {
         📦 *New Service Booking* 📦
         - 📇 *Customer Name:* ${formData.name}
         - 📞 *Phone:* ${formData.phone}
-        - ✉️ *Email:* ${formData.email}
         - 🕐 *Arrival Time:* ${formatDate(formData.at)}
         - 📩 *Message:* ${formData.message}
         - =============================
@@ -214,7 +204,6 @@ export default function Services() {
                         {
                             name: formData.name,
                             phone: formData.phone,
-                            email: formData.email,
                             arrival_time: formatDate(formData.at),
                             message: formData.message,
                         },
@@ -229,7 +218,6 @@ export default function Services() {
                 setFormData({
                     product_name: "",
                     name: "",
-                    email: "",
                     phone: "",
                     at: new Date(),
                     message: ""
@@ -400,19 +388,6 @@ export default function Services() {
                                 </div>
 
                                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                                    <div >
-                                        <label className={`text-bpp-color-100 ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`} htmlFor="email">{t('email')}</label>
-                                        <input
-                                            className={`w-full rounded-lg border-gray-200 p-3 text-sm text-bpp-color-300 ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}
-                                            placeholder={t('placeholder_email')}
-                                            type="email"
-                                            id="email"
-                                            value={formData.email}
-                                            onChange={handleChange}
-                                        />
-                                        {error.email && <p className="text-[#ff0000]">{error.email}</p>}
-                                    </div>
-
                                     <div>
                                         <label className={`text-bpp-color-100 ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`} htmlFor="phone">{t('phone')}</label>
                                         <input
