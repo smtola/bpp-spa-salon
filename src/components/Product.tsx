@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
-
+import { useTranslation } from 'react-i18next';
+import '../i18n';
 interface Product{
     pro_id:string;
     pro_name:string;
@@ -31,7 +32,12 @@ export default function Product() {
     const [modalID, setModalID] = useState<string>('');
     const [btnLoading, setBtnLoading] = useState(true);
     const [alert, setAlert] = useState<string | null>(null);
-
+    const { t } = useTranslation();
+    const [lang, setLang] = useState<string | null>(null);
+    useEffect(()=>{
+        const localeEn = localStorage.getItem('i18nextLng');
+        setLang(localeEn);
+    });
     useEffect(()=>{
         fetchData();
         if (alert) {
@@ -142,8 +148,8 @@ export default function Product() {
         // Merge previous error state and update only the specific field
         setError((prevError) => ({
             ...prevError,
-            phone: phoneValid ? "" : "Invalid phone number",
-            email: emailValid ? "" : "Invalid email format",
+            phone: phoneValid ? "" : t('valid_phone'),
+            email: emailValid ? "" : t('valid_email'),
             address: addressValid ? "" : "Invalid address format",
         }));
 
@@ -283,7 +289,7 @@ export default function Product() {
             ) : (
                 ""
             )}
-            <h2 className="text-start text-bpp-color-300 text-[16px] md:text-[18px] xl:text-[22px] font-bold xl:ms-[10em] mb-[2em]">Our Products</h2>
+            <h2 className={`text-start text-bpp-color-300 text-[16px] md:text-[18px] xl:text-[22px] font-bold xl:ms-[10em] mb-[2em] ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}>{t('our_products')}</h2>
             <div className="max-w-screen-lg mx-auto grid grid-cols-12 items-center justify-center gap-[2vw] lg:gap-[1vw]">
                 {product && product.map((product, index)=>
             <div key={index} data-aos="fade-right" data-aos-easing="ease-in-sine"
@@ -306,8 +312,8 @@ export default function Product() {
                         </h2>
                         <button
                             onClick={() => handleModalOpen(product.pro_id)}
-                            className="w-full bg-bpp-color-300 py-[2px] px-[16px] rounded-full text-[#ffffff] hover:bg-bpp-color-200 transition-all duration-[150]">
-                            Buy
+                            className={`w-full bg-bpp-color-300 py-[2px] px-[16px] rounded-full text-[#ffffff] hover:bg-bpp-color-200 transition-all duration-[150] ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}>
+                            {t('btn_buy')}
                         </button>
                     </div>
                 </div>
@@ -325,12 +331,12 @@ export default function Product() {
                     <div className="mt-[2em]">
                         <form className="space-y-4 pb-[4em]" onSubmit={handleSubmit}>
                             <div >
-                                <label className="text-bpp-color-100" htmlFor="product_name">
-                                    Product Name
+                                <label className={`text-bpp-color-100 ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`} htmlFor="product_name">
+                                    {t('product_name')}
                                 </label>
                                 <input
-                                    className="w-full rounded-lg border-gray-200 p-3 text-sm text-bpp-color-300"
-                                    placeholder="Product name"
+                                    className={`w-full rounded-lg border-gray-200 p-3 text-sm text-bpp-color-300 ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}
+                                    placeholder={t('product_name')}
                                     type="text"
                                     value={formData.productName}
                                     disabled
@@ -339,11 +345,11 @@ export default function Product() {
                                 />
                             </div>
                             <div >
-                                <label className="text-bpp-color-100" htmlFor="price">
-                                    Price
+                                <label className={`text-bpp-color-100 ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`} htmlFor="price">
+                                    {t('price')}
                                 </label>
                                 <input
-                                    className="w-full rounded-lg border-gray-200 p-3 text-sm text-bpp-color-300"
+                                    className={`w-full rounded-lg border-gray-200 p-3 text-sm text-bpp-color-300 ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}
                                     placeholder="Price"
                                     type="text"
                                     value={formData.price}
@@ -353,11 +359,11 @@ export default function Product() {
                                 />
                             </div>
                             <div >
-                                <label className="text-bpp-color-100" htmlFor="amount">
-                                    Total Amount
+                                <label className={`text-bpp-color-100 ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`} htmlFor="amount">
+                                    {t('total_amount')}
                                 </label>
                                 <input
-                                    className="w-full rounded-lg border-gray-200 p-3 text-sm text-bpp-color-300"
+                                    className={`w-full rounded-lg border-gray-200 p-3 text-sm text-bpp-color-300 ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}
                                     placeholder="Total Amount"
                                     type="hidden"
                                     value={formData.qtyChange * formData.price}
@@ -365,12 +371,12 @@ export default function Product() {
                                     required
                                 />
                                 <p className="w-fit font-[700] rounded-lg bg-bpp-color-100/20 p-3 text-md text-bpp-color-100">
-                                    {formatCurrency(formData.qtyChange * 35)}
+                                    {formatCurrency(formData.qtyChange * formData.price)}
                                 </p>
                             </div>
                             <div className="w-[200px]">
                                 <label htmlFor="Quantity" className="text-bpp-color-100">
-                                    Quantity
+                                    {t('qty')}
                                 </label>
 
                                 <div className="w-full flex items-center rounded-sm border border-gray-200">
@@ -408,12 +414,12 @@ export default function Product() {
                             </div>
 
                             <div >
-                                <label className="text-bpp-color-100" htmlFor="name">
-                                    Name
+                                <label className={`text-bpp-color-100 ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`} htmlFor="name">
+                                    {t('name')}
                                 </label>
                                 <input
-                                    className="w-full rounded-lg border-gray-200 p-3 text-sm text-bpp-color-300"
-                                    placeholder="Name"
+                                    className={`w-full rounded-lg border-gray-200 p-3 text-sm text-bpp-color-300 ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}
+                                    placeholder={t('placeholder_name')}
                                     type="text"
                                     id="name"
                                     value={formData.name}
@@ -423,14 +429,14 @@ export default function Product() {
                             </div>
 
                             <div
-                                className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                                className={`grid grid-cols-1 gap-4 sm:grid-cols-2 ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}>
                                 <div>
                                     <label className="text-bpp-color-100" htmlFor="email">
-                                        Email
+                                        {t('email')}
                                     </label>
                                     <input
                                         className="w-full rounded-lg border-gray-200 p-3 text-sm text-bpp-color-300"
-                                        placeholder="Email address"
+                                        placeholder={t('placeholder_email')}
                                         type="email"
                                         id="email"
                                         value={formData.email}
@@ -441,11 +447,11 @@ export default function Product() {
 
                                 <div >
                                     <label className="text-bpp-color-100" htmlFor="phone">
-                                        Phone
+                                        {t('phone')}
                                     </label>
                                     <input
                                         className="w-full rounded-lg border-gray-200 p-3 text-sm text-bpp-color-300"
-                                        placeholder="Phone Number"
+                                        placeholder={t('placeholder_phone')}
                                         type="tel"
                                         id="phone"
                                         value={formData.phone}
@@ -456,25 +462,25 @@ export default function Product() {
                             </div>
 
                             <div >
-                                <label className="text-bpp-color-100" htmlFor="address">
-                                    Address
+                                <label className={`text-bpp-color-100 ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`} htmlFor="address">
+                                    {t('add')}
                                 </label>
                                 <textarea
-                                    className="w-full rounded-lg border-gray-200 p-3 text-sm text-bpp-color-300"
-                                    placeholder="Address"
+                                    className={`w-full rounded-lg border-gray-200 p-3 text-sm text-bpp-color-300 ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}
+                                    placeholder={t('placeholder_address')}
                                     id="address"
                                     value={formData.address}
                                     onChange={handleChange}
                                 ></textarea>
-                                {error.address && <p className="text-[#ff0000]">{error.email}</p>}
+                                {error.address && <p className={`text-[#ff0000] ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}>{error.email}</p>}
                             </div>
 
                             <div className="mt-4" >
                                 <button
                                     type="submit"
-                                    className="inline-block w-full rounded-lg bg-bpp-color-200 hover:bg-bpp-color-100 hover:shadow-md float-end px-5 py-3 font-medium text-bpp-color-300 sm:w-auto"
+                                    className={`inline-block w-full rounded-lg bg-bpp-color-200 hover:bg-bpp-color-100 hover:shadow-md float-end px-5 py-3 font-medium text-bpp-color-300 sm:w-auto ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}
                                 >
-                                    {!btnLoading ? <div className="flex justify-center gap-2 items-center"><span className="loading loading-spinner text-bpp-color-100"></span> <p>loading...</p></div> :<p>Buy</p>}
+                                    {!btnLoading ? <div className="flex justify-center gap-2 items-center"><span className="loading loading-spinner text-bpp-color-100"></span> <p>loading...</p></div> :<p>{t('btn_buy_1')}</p>}
                                 </button>
                             </div>
                         </form>

@@ -1,9 +1,17 @@
 import Logo from "../assets/images/logo_white.png";
 import bgFooter from "../assets/images/bg_footer.png";
-
+import { useTranslation } from 'react-i18next';
+import '../i18n';
+import {useEffect, useState} from "react";
 export default function Footer() {
+    const {t} = useTranslation();
+    const [lang, setLang] = useState<string | null>(null);
+    useEffect(()=>{
+        const localeEn = localStorage.getItem('i18nextLng');
+        setLang(localeEn);
+    });
     return(
-        <footer className="relative flex flex-col justify-center items-center w-full h-full overflow-hidden p-4">
+        <footer className={`relative flex flex-col justify-center items-center w-full h-full overflow-hidden p-4 ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}>
             <img src={
                 bgFooter
             } alt="background"
@@ -40,7 +48,7 @@ export default function Footer() {
                                         font-[400]
                                         leading-[28px]
                                     ">
-                                    Recognizing the challenges modern women face—juggling work, family, and personal care—the owner envisioned a sanctuary where women could feel beautiful and rejuvenated despite their busy lives. At BPP Spa and Salon, we offer exceptional services from head to toe, including hair, eyes, facial, armpit, nail, and body spa treatments.
+                                    {t('footer_quote')}
                                 </p>
                             </li>
                             <li>
@@ -51,7 +59,7 @@ export default function Footer() {
                                         font-[700]
                                         leading-[23px]
                                     "
-                                >Operation Hour : 7:30am -8:30pm </h2>
+                                >{t('op_hour')} : 7:30am -8:30pm</h2>
                                 <h2 data-aos="fade-left" data-aos-easing="ease-in-sine"
                                     className="
                                         text-[15px]
@@ -59,7 +67,7 @@ export default function Footer() {
                                         font-[700]
                                         leading-[23px]
                                     "
-                                >Mon - Sun</h2>
+                                >{t('date')}</h2>
                                 <h2 data-aos="fade-right" data-aos-easing="ease-in-sine"
                                     className="
                                         text-[15px]
@@ -76,7 +84,7 @@ export default function Footer() {
                                         text-[#ffffff]
                                         font-[700]
                                         leading-[23px]
-                                    ">Follow Us</h2>
+                                    ">{t('follow_up')}</h2>
                             </li>
                             <li className="inline-flex items-center my-[1em] space-x-3">
                                 <span data-aos="fade-right" data-aos-easing="ease-in-sine">
@@ -110,7 +118,7 @@ export default function Footer() {
                                         text-[#ffffff]
                                         font-[700]
                                         leading-[23px]
-                                    ">Address : </h2>
+                                    ">{t('address')}</h2>
                             </li>
                             <li>
                                 <p data-aos="fade-left" data-aos-easing="ease-in-sine"

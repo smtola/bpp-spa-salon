@@ -4,12 +4,20 @@ import tree from "../assets/images/treeLayer.png";
 import CallCenter from "../assets/images/call_center.png";
 import '../components/Aboutus.css';
 import Logo from "../assets/images/logo_white.png";
-import {useRef} from "react";
+import {useEffect, useRef, useState} from "react";
 import GoToTop from "../components/GoToTop";
 import Scroll from "../components/Scroll";
+import { useTranslation } from 'react-i18next';
+import '../i18n';
 export default function ContactUs(){
     const services = useRef<HTMLDivElement>(null);
     const products = useRef<HTMLDivElement>(null);
+    const {t}= useTranslation();
+    const [lang, setLang] = useState<string | null>(null);
+    useEffect(()=>{
+        const localeEn = localStorage.getItem('i18nextLng');
+        setLang(localeEn);
+    });
     return(
         <div className="scroll-smooth">
             <Scroll />
@@ -55,20 +63,20 @@ export default function ContactUs(){
                                 </div>
                                 <div data-aos="fade-up" data-aos-easing="ease-in-sine"
                                     className="w-full md:max-w-xl 2xl:max-w-md my-3">
-                                    <p className="text-[#ffffff] text-[16px] font-[400] text-pretty">
-                                        Recognizing the challenges modern women face—juggling work, family, and personal care—the owner envisioned a sanctuary where women could feel beautiful and rejuvenated despite their busy lives. At BPP Spa and Salon, we offer exceptional services from head to toe, including hair, eyes, facial, armpit, nail, and body spa treatments.
+                                    <p className={`text-[#ffffff] text-[16px] font-[400] text-pretty ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}>
+                                        {t('footer_quote')}
                                     </p>
                                 </div>
                                 <div  className="w-full md:max-w-xl grid grid-cols-12 items-start justify-start gap-[1vw] my-3">
                                     <div className="col-span-12 md:col-span-6">
-                                        <h2 data-aos="fade-up" data-aos-easing="ease-in-sine" className="text-[#ffffff] text-[16px] font-[700]">Operation Hour : 7:30am -8:30pm</h2>
-                                        <h2 data-aos="fade-up" data-aos-easing="ease-in-sine" className="text-[#ffffff] text-[16px] font-[700]">Mon - Sun</h2>
-                                        <h2 data-aos="fade-up" data-aos-easing="ease-in-sine" className="text-[#ffffff] text-[16px] font-[700]">076 3 9999 66</h2>
+                                        <h2 data-aos="fade-up" data-aos-easing="ease-in-sine" className={`text-[#ffffff] text-[16px] font-[700] ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}>{t('op_hour')} : 7:30am -8:30pm</h2>
+                                        <h2 data-aos="fade-up" data-aos-easing="ease-in-sine" className={`text-[#ffffff] text-[16px] font-[700] ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}>{t('date')}</h2>
+                                        <h2 data-aos="fade-up" data-aos-easing="ease-in-sine" className={`text-[#ffffff] text-[16px] font-[700] ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}>076 3 9999 66</h2>
 
-                                        <h2 data-aos="fade-up" data-aos-easing="ease-in-sine" className="text-[#ffffff] text-[16px] font-[700] mt-[10px]">Address :</h2>
+                                        <h2 data-aos="fade-up" data-aos-easing="ease-in-sine" className={`text-[#ffffff] text-[16px] font-[700] mt-[10px] ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}>{t('address')}</h2>
                                         <p data-aos="fade-up" data-aos-easing="ease-in-sine" className="text-[#ffffff] text-[16px] font-[400] text-pretty">Shop House #369D, Street 777, Borey Vimean Phnom Penh Thmey Project 598</p>
 
-                                        <h2 data-aos="fade-up" data-aos-easing="ease-in-sine" className="text-[#ffffff] text-[16px] font-[700] mt-[10px]">Follow Us</h2>
+                                        <h2 data-aos="fade-up" data-aos-easing="ease-in-sine" className={`text-[#ffffff] text-[16px] font-[700] mt-[10px] ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}>{t('follow_up')}</h2>
                                         <div data-aos="fade-up" data-aos-easing="ease-in-sine" className="inline-flex items-center my-[1em] space-x-3">
                                             <span>
                                                 <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">

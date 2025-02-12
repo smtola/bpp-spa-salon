@@ -12,8 +12,10 @@
   "our_service": "Our Services",
   "ft": "Facial Treatment",
   "btn_book_now": "Book Now",
+  "btn_book_now_1": "Book Now",
   "our_products": "Our Products",
   "btn_buy": "Buy",
+  "btn_buy_1": "Buy",
 
   "why_choose_us": "Why Choose Us?",
   "al": "Affordable Luxury",
@@ -25,5 +27,45 @@
   "ifa": "Inclusive for All",
   "ifa_detail": "We welcome everyone—women, men, and all genders. Our services are designed to make everyone feel special, confident, and cared for.",
   "exp_twapt": "Expert Team with a Personal Touch",
-  "exp_twapt_detail": "Our passionate and highly trained team takes the time to understand your needs, ensuring a personalized experience every time you visit."
+  "exp_twapt_detail": "Our passionate and highly trained team takes the time to understand your needs, ensuring a personalized experience every time you visit.",
+
+  "footer_quote": "Recognizing the challenges modern women face—juggling work, family, and personal care—the owner envisioned a sanctuary where women could feel beautiful and rejuvenated despite their busy lives. At BPP Spa and Salon, we offer exceptional services from head to toe, including hair, eyes, facial, armpit, nail, and body spa treatments.",
+  "op_hour": "Operation Hour",
+  "date": "Mon - Sun",
+  "follow_up": "Follow Up",
+  "address" : "Address :",
+
+  "vision": "Vision",
+  "vision_detail": "Our vision is to provide the best services, making every client feel special, confident, and beautiful.",
+  "mission_statement": "Mission Statement",
+  "mission_statement_detail": "To empower women by offering exceptional beauty and spa services that help them look and feel their best, no matter how busy life gets.",
+  "core_value": "Core Values",
+  "passion": "Passion",
+  "creative": "Creativity",
+  "dream": "Dream",
+  "unique": "Unique",
+  "lifelong_learning": "Lifelong Learning",
+
+  "brc": "Business Registration Certificate",
+  "fbp": "Future Business Plan",
+  "fbp_detail": "Our plan is to scale our operations and open branches in 25 provinces nationwide.",
+
+  "product_name": "Product Name",
+  "name": "Your Name",
+  "placeholder_name": "Enter your name",
+  "email": "Email",
+  "placeholder_email": "Enter your email",
+  "phone": "Phone",
+  "placeholder_phone": "Enter your phone",
+  "arrival_time": "Arrival Time",
+  "message": "Message",
+  "placeholder_message": "Enter your message",
+  "add": "Address",
+  "placeholder_address": "Enter your address",
+  "price": "Price",
+  "total_amount": "Total Amount",
+  "qty": "Quantity",
+
+  "valid_email": "Invalid email format",
+  "valid_phone": "Invalid phone number"
 }

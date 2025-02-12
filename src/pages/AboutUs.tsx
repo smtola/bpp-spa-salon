@@ -7,12 +7,20 @@ import cert from "../assets/images/Cert_2.png";
 import pin from "../assets/images/pin.png";
 import Footer from "../components/Footer";
 import '../components/Aboutus.css';
-import {useRef} from "react";
+import {useEffect, useRef, useState} from "react";
 import GoToTop from "../components/GoToTop";
 import Scroll from "../components/Scroll";
+import { useTranslation } from 'react-i18next';
+import '../i18n';
 export default function AboutUs(){
     const services = useRef<HTMLDivElement>(null);
     const products = useRef<HTMLDivElement>(null);
+    const { t } = useTranslation();
+    const [lang, setLang] = useState<string | null>(null);
+    useEffect(()=>{
+        const localeEn = localStorage.getItem('i18nextLng');
+        setLang(localeEn);
+    });
     return(
         <div className="scroll-smooth">
             <Scroll />
@@ -61,9 +69,9 @@ export default function AboutUs(){
                                             </svg>
                                         </span>
                                         <div className="flex flex-col items-start w-[220px] md:w-[320px] lg:w-[400px] ">
-                                            <h2 className="text-[14px] md:text-[18px] xl:text-[20px] 2xl:text-[24px] text-bpp-color-300 font-[700] leading-[12px] md:leading-[24px] group-hover:!text-bpp-color-100 transition-all duration-[150] ease-out-in">Vision</h2>
-                                            <p className="text-[8px] text-[#000] md:text-[11px] xl:text-[14px] font-[400] leading-[12px] md:leading-[24px] group-hover:!text-bpp-color-100 transition-all duration-[150] ease-out-in pe-[4em] md:pe-0">
-                                                Our vision is to provide the best services, making every client feel special, confident, and beautiful.
+                                            <h2 className="text-[14px] md:text-[18px] xl:text-[20px] 2xl:text-[24px] text-bpp-color-300 font-[700] leading-[12px] md:leading-[24px] group-hover:!text-bpp-color-100 transition-all duration-[150] ease-out-in">{t('vision')}</h2>
+                                            <p className={`text-[8px] text-[#000] md:text-[11px] xl:text-[14px] font-[400] leading-[12px] md:leading-[24px] group-hover:!text-bpp-color-100 transition-all duration-[150] ease-out-in pe-[4em] md:pe-0 ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}>
+                                                {t('vision_detail')}
                                             </p>
                                         </div>
                                     </div>
@@ -85,9 +93,9 @@ export default function AboutUs(){
                                            </svg>
                                         </span>
                                         <div className="flex flex-col items-start w-[220px] md:w-[320px] lg:w-[400px] ">
-                                            <h2 className="text-[14px] md:text-[18px] xl:text-[20px] 2xl:text-[24px] text-bpp-color-300 font-[700] leading-[12px] md:leading-[24px] group-hover:!text-bpp-color-100 transition-all duration-[150] ease-out-in">Mission Statement</h2>
-                                            <p className="text-[8px] text-[#000] md:text-[11px] xl:text-[14px] font-[400] leading-[12px] md:leading-[24px] group-hover:!text-bpp-color-100 transition-all duration-[150] ease-out-in pe-[4em] md:pe-0">
-                                                To empower women by offering exceptional beauty and spa services that help them look and feel their best, no matter how busy life gets.
+                                            <h2 className="text-[14px] md:text-[18px] xl:text-[20px] 2xl:text-[24px] text-bpp-color-300 font-[700] leading-[12px] md:leading-[24px] group-hover:!text-bpp-color-100 transition-all duration-[150] ease-out-in">{t('mission_statement')}</h2>
+                                            <p className={`text-[8px] text-[#000] md:text-[11px] xl:text-[14px] font-[400] leading-[12px] md:leading-[24px] group-hover:!text-bpp-color-100 transition-all duration-[150] ease-out-in pe-[4em] md:pe-0 ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}>
+                                                {t('mission_statement_detail')}
                                             </p>
                                         </div>
                                     </div>
@@ -104,22 +112,22 @@ export default function AboutUs(){
                                            </svg>
                                         </span>
                                         <div className="flex flex-col items-start w-[220px] md:w-[400px] xl:w-[220px] ">
-                                            <h2 className="text-[14px] md:text-[18px] xl:text-[20px] 2xl:text-[24px] text-bpp-color-300 font-[700] leading-[12px] md:leading-[24px] group-hover:!text-bpp-color-100 transition-all duration-[150] ease-out-in">Core Values</h2>
-                                            <ul className="flex items-center text-[#000] flex-wrap gap-[10px] xl:gap-[12px] my-2 text-[8px] md:text-[11px] xl:text-[14px] font-[400] group-hover:!text-bpp-color-100 transition-all duration-[150] ease-out-in">
+                                            <h2 className="text-[14px] md:text-[18px] xl:text-[20px] 2xl:text-[24px] text-bpp-color-300 font-[700] leading-[12px] md:leading-[24px] group-hover:!text-bpp-color-100 transition-all duration-[150] ease-out-in">{t('core_value')}</h2>
+                                            <ul className={`flex items-center text-[#000] flex-wrap gap-[10px] xl:gap-[12px] my-2 text-[8px] md:text-[11px] xl:text-[14px] font-[400] group-hover:!text-bpp-color-100 transition-all duration-[150] ease-out-in ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}>
                                                 <li>
-                                                    Passion
+                                                    {t('passion')}
                                                 </li>
                                                 <li>
-                                                    Creativity
+                                                    {t('creative')}
                                                 </li>
                                                 <li>
-                                                    Dream
+                                                    {t('dream')}
                                                 </li>
                                                 <li>
-                                                    Unique
+                                                    {t('unique')}
                                                 </li>
                                                 <li>
-                                                    Lifelong Learning
+                                                    {t('lifelong_learning')}
                                                 </li>
                                             </ul>
                                         </div>
@@ -133,9 +141,8 @@ export default function AboutUs(){
                 <section className="bg-[#ffffff] w-full h-full overflow-hidden">
                     <div className="w-full max-w-screen-lg mx-auto flex flex-wrap items-center justify-center">
                         <div data-aos="fade-right" data-aos-easing="ease-in-sine">
-                            <h2 className="text-center md:text-start text-bpp-color-300 text-[24px] md:text-[30px] font-[700] leading-[30px] w-[270px] md:w-[400px]">
-                                Business Registration
-                                Certificate
+                            <h2 className={`text-center md:text-start text-bpp-color-300 text-[24px] md:text-[30px] font-[700] leading-[30px] w-[270px] md:w-[400px] ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}>
+                                {t('brc')}
                             </h2>
                         </div>
                         <div data-aos="fade-left" data-aos-easing="ease-in-sine">
@@ -149,13 +156,13 @@ export default function AboutUs(){
                 <section className="bg-gradient-to-br from-bpp-color-300 to-bpp-color-200 overflow-hidden">
                     <div className="w-full max-w-screen-xl mx-auto grid grid-cols-12 items-center xl:justify-center h-full md:min-h-screen px-3 py-[1.5em] md:py-0">
                         <div data-aos="fade-right" data-aos-easing="ease-in-sine" className="col-span-12 xl:col-span-3">
-                            <h2 className="text-center xl:text-start text-[#ffffff] text-[24px] md:text-[34px] xl:text-[30px] font-[700] xl:leading-[30px] xl:w-[270px]">
-                                Future
-                                Business Plan
+                            <h2 className={`text-center xl:text-start text-[#ffffff] text-[24px] md:text-[34px] xl:text-[30px] font-[700] xl:leading-[30px] xl:w-[270px] ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}>
+                                {t('fbp')}
                             </h2>
-                            <p className="text-center xl:text-start text-[#ffffff] text-[16px] md:text-[16px] xl:text-[14px] font-[400] xl:leading-[30px]">
-                                Our plan is to scale our operations and open branches in 25 provinces nationwide.
+                            <p className={`text-center xl:text-start text-[#ffffff] text-[16px] md:text-[16px] xl:text-[14px] font-[400] xl:leading-[30px] ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}>
+                                {t('fbp_detail')}
                             </p>
+
                         </div>
                         <div data-aos="fade-left" data-aos-easing="ease-in-sine" className="col-span-12 xl:col-span-9">
                             <img src={pin} alt="PIN"
@@ -171,7 +178,7 @@ export default function AboutUs(){
                              className="absolute inset-0 w-full h-full object-center object-cover"/>
                         <div className="absolute inset-0 bg-gradient-to-br from-[#ffffff]/70 via-bpp-color-100/80 to-[#ffffff]/40"></div>
                         <div className="relative">
-                            <h1 data-aos="fade-left" data-aos-easing="ease-in-sine" className="text-bpp-color-300 font-[400] text-[40px] md:text-[80px] lg:text-[120px] leading-[40px]">Your Beauty, Our Passion</h1>
+                            <h1 data-aos="fade-left" data-aos-easing="ease-in-sine" className={`text-bpp-color-300 font-[400] text-[40px] md:text-[80px] lg:text-[120px] leading-[40px] `}>{t('quote')}</h1>
                         </div>
                     </div>
                 </section>
