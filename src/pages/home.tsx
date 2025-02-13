@@ -27,7 +27,7 @@ export default function Home(){
             <Navigations services={services} products={products}/>
             <div>
                 {/* Header Section*/}
-                <header className="res-mb relative flex flex-col justify-end items-center overflow-hidden min-h-[58vh] md:min-h-[45vh] lg:min-h-[48vh] xl:min-h-[88vh] 2xl:min-h-screen">
+                <header className="res-mb relative flex flex-col justify-end items-center overflow-hidden min-h-[50vh] md:min-h-[45vh] lg:min-h-[48vh] xl:min-h-[88vh] 2xl:min-h-screen">
                     <div>
                         <img src={banner_1} alt="banner"
                              className="absolute inset-0 w-full object-contain object-center"
@@ -41,13 +41,13 @@ export default function Home(){
                     ">
                         <Navbar services={services} products={products}/>
                         <div className="translate-x-[-6%] md:translate-x-[12.5%] xl:translate-x-0">
-                            <h1 data-aos="fade-left"
-                                className={` text-bpp-color-300 text-center mt-[.5em] xl:mt-[1em] 2xl:mt-[1.4em] md:leading-[67px] ${lang == 'kh' ? "font-['Kantumruy_Pro'] text-[12px] md:text-[17px] lg:text-[24px] text-wrap": "font-['Italianno'] text-[40px] md:text-[80px] lg:text-[120px] text-wrap l"}`}>{t('welcome')}</h1>
-                            <h2 data-aos="fade-right"
+                            <h1
+                                className={` text-bpp-color-300 text-center mt-[.5em] xl:mt-[1em] 2xl:mt-[1.4em] md:leading-[67px] ${lang == 'kh' ? "font-['Kantumruy_Pro']  text-wrap text-[12px] md:text-[17px] lg:text-[24px]": "font-['Italianno'] text-[12px] md:text-[17px] lg:text-[50px] text-wrap"}`}>{t('welcome')}</h1>
+                            <h2
                                 className={`text-[16px] md:text-[30px] lg:text-[40px] xl:text-[50px] text-bpp-color-300 text-center leading-[1px] font-bold ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}>
                                 {t('company_name')}
                             </h2>
-                            <h1 data-aos="fade-left"
+                            <h1
                                 className={`text-[14px] md:text-[20px] lg:text-[30px] xl:text-[40px] text-bpp-color-300 text-center mt-[1.4em] leading-[1px]`}>{t('quote')}</h1>
                         </div>
                     </div>

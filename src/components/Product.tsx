@@ -431,7 +431,7 @@ export default function Product() {
                             </div>
 
                             <div
-                                className={`grid grid-cols-1 gap-4 sm:grid-cols-2 ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}>
+                                className={`grid grid-cols-1 gap-4 ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}>
 
                                 <div >
                                     <label className="text-bpp-color-100" htmlFor="phone">
