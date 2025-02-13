@@ -133,12 +133,8 @@ export default function Product() {
     const handleCloseModal = (e:React.FormEvent) => {
         e.preventDefault();
         setFormData({
-            productName: "",
-            price: 0,
+            ...formData,
             qtyChange: 0,
-            name: "",
-            phone: "",
-            address: ""
         });
 
         const modal = document.getElementById(modalID) as HTMLDialogElement | null;
