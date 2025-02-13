@@ -1,15 +1,12 @@
 import {useEffect, useState} from "react";
 import { useTranslation } from 'react-i18next';
 import '../i18n';
-interface Product{
-    pro_id:string;
-    pro_name:string;
-    description:string;
-    price:number;
-    image_url:string;
+import { Items } from "./ItemService";
+
+interface ItemProp{
+    items: Items[] | null;
 }
-export default function Product() {
-    const [product, setProduct] = useState<Product[] | null>(null);
+export default function Product({items}:ItemProp) {
     const [formData, setFormData] = useState({
         productName: "",
         price: 0,
@@ -22,11 +19,8 @@ export default function Product() {
         phone: "",
         address: "",
     });
-    const [isLoading, setIsLoading] = useState(true);
-
     const [productName, setProductName] = useState<string | null>('');
     const [price, setPrice] = useState<number | null>(0);
-    const [errorData, setErrorData] = useState<string | null>(null);
     const [modalID, setModalID] = useState<string>('');
     const [btnLoading, setBtnLoading] = useState(true);
     const [alert, setAlert] = useState<string | null>(null);
@@ -37,7 +31,6 @@ export default function Product() {
         setLang(localeEn);
     });
     useEffect(()=>{
-        fetchData();
         if (alert) {
             const timer = setTimeout(() => {
                 setAlert(null);
@@ -55,40 +48,7 @@ export default function Product() {
         }));
     }, [productName]);
 
-    const fetchData = async () => {
-        const apiKey = 'V2-zXfYl-N34Ka-WaWcb-JA4zL-LoOjX-4Xgbf-MXUfn-dy5U0';
-        const tableName = "Products";
-        const appId = '630daa92-8472-4471-a1e6-31b8f7bf869c';
-        const endPoint = `https://api.appsheet.com/api/v2/apps/${appId}/tables/${tableName}/query`;
 
-        setIsLoading(true);
-        try{
-            const response = await fetch(endPoint, {
-                method: "POST",
-                headers:{
-                    "Content-Type": "application/json",
-                    applicationAccessKey: apiKey,
-                },
-                body:JSON.stringify({
-                    Action:"Find",
-                    Properties:{
-                        Locale:"en-US",
-                        Timezone: "UTC",
-                    },
-                    Rows:[]
-                }),
-            });
-            if(!response.ok){
-                throw new Error("Failed to fetch data from Database");
-            }
-            const result: Product[] = await response.json();
-            setProduct(result);
-        }catch (err){
-            setErrorData((err as Error).message);
-        }finally {
-            setIsLoading(false);
-        }
-    }
     const handleChange = (e: any) => {
         setFormData({
             ...formData,
@@ -97,7 +57,7 @@ export default function Product() {
     };
 
     const validatePhone = (phone: any) => {
-        const phoneRegex = /^(?:\+855|0)(?:[1-9]{1}[0-9]{7})$/;
+        const phoneRegex = /^(?:\+855|0)(?:[1-9]{1}[0-9]{8})|(?:[1-9]{1}[0-9]{7})$/;
         return phoneRegex.test(phone);
     };
 
@@ -123,8 +83,8 @@ export default function Product() {
                 console.error(`No element found with ID "${id}".`);
             }
         }, 0);
-        product?.map((items) => {
-            if (items.pro_id === id) {
+        items?.map((items) => {
+            if (items.item_id === id) {
                 setProductName(items.pro_name);
                 setPrice(items.price);
             }
@@ -158,79 +118,79 @@ export default function Product() {
             address: addressValid ? "" : "Invalid address format",
         }));
 
-        if (!phoneValid) {
-            // Submit the form data here
-            return;
-        }
+        if (phoneValid) {
+            const apiKey = 'V2-zXfYl-N34Ka-WaWcb-JA4zL-LoOjX-4Xgbf-MXUfn-dy5U0';
+            const appId = '630daa92-8472-4471-a1e6-31b8f7bf869c';
+            const tableName = "order";
+            const endPoint = `https://api.appsheet.com/api/v2/apps/${appId}/tables/${tableName}/query`;
 
-        const apiKey = 'V2-zXfYl-N34Ka-WaWcb-JA4zL-LoOjX-4Xgbf-MXUfn-dy5U0';
-        const tableName = "order";
-        const appId = '630daa92-8472-4471-a1e6-31b8f7bf869c';
-        const endPoint = `https://api.appsheet.com/api/v2/apps/${appId}/tables/${tableName}/query`;
+            // telegram
+            const TELEGRAM_BOT_TOKEN = '7786727966:AAENBDXFKdVcYAPYkKFkpEta2-UlvoyB1q0'; // Store your token in an environment variable
+            const TELEGRAM_CHAT_ID = '-1002459175480'; // Store your group chat ID in an environment variable
+            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+            const message = `
+            📦 *New Ordering Product* 📦
+            - 📇 *Customer Name:* ${formData.name}
+            - 📞 *Phone:* ${formData.phone}
+            - 📩 *Address:* ${formData.address}
+            - =============================
+            - 🏷️ *Product Name:* ${formData.productName}
+            - 💵 *Price:* $${formData.price}
+            - 🔢 *Quantity:* ${formData.qtyChange}
+            - 💵 *Total Amount:* $${formData.price * formData.qtyChange}
+            `;
 
-        // telegram
-        const TELEGRAM_BOT_TOKEN = '7786727966:AAENBDXFKdVcYAPYkKFkpEta2-UlvoyB1q0'; // Store your token in an environment variable
-        const TELEGRAM_CHAT_ID = '-1002459175480'; // Store your group chat ID in an environment variable
-        const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-        const message = `
-        📦 *New Ordering Product* 📦
-        - 📇 *Customer Name:* ${formData.name}
-        - 📞 *Phone:* ${formData.phone}
-        - 📩 *Address:* ${formData.address}
-        - =============================
-        - 🏷️ *Product Name:* ${formData.productName}
-        - 💵 *Price:* $${formData.price}
-        - 🔢 *Quantity:* ${formData.qtyChange}
-        - 💵 *Total Amount:* $${formData.price * formData.qtyChange}
-        `;
+            setBtnLoading(true);
+            try {
+                const res = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: message,
+                        parse_mode: 'Markdown', // Enables formatting
+                    }),
+                });
 
-        setBtnLoading(true);
-        try {
-            const res = await fetch(url, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    chat_id: TELEGRAM_CHAT_ID,
-                    text: message,
-                    parse_mode: 'Markdown', // Enables formatting
-                }),
-            });
-
-            const resAppSheet = await fetch(endPoint, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    applicationAccessKey: apiKey,
-                },
-                body: JSON.stringify({
-                    Action: "Add",
-                    Properties: {
-                        Locale: "en-US",
-                        Timezone: "UTC",
+                const resAppSheet = await fetch(endPoint, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        applicationAccessKey: apiKey,
                     },
-                    Rows: [
-                        {
-                            product_name: formData.productName,
-                            price: formData.price,
-                            qty: formData.qtyChange,
-                            total_amount: formData.price * formData.price,
-                            name: formData.name,
-                            phone: formData.phone,
-                            address: formData.address,
+                    body: JSON.stringify({
+                        Action: "Add",
+                        Properties: {
+                            Locale: "en-US",
+                            Timezone: "UTC",
                         },
-                    ],
-                }),
-            });
+                        Rows: [
+                            {
+                                product_name: formData.productName,
+                                price: formData.price,
+                                qty: formData.qtyChange,
+                                total_amount: formData.price * formData.price,
+                                name: formData.name,
+                                phone: formData.phone,
+                                address: formData.address,
+                            },
+                        ],
+                    }),
+                });
 
-            const data = await res.json();
-            const dataAppSheet = await resAppSheet.json();
-
-            if (res.ok) {
+                const data = await res.json();
+                const dataAppSheet = await resAppSheet.json();
+                setBtnLoading(false);
+                if (res.ok) {
+                    setAlert("Message sent successfully!");
+                } else {
+                    setAlert(`Error: ${data.message}`);
+                    setAlert(`Error: ${dataAppSheet.message}`);
+                }
                 setFormData({
-                    productName: "",
+                    ...formData,
                     name: "",
                     phone: "",
-                    price: 0,
                     qtyChange: 0,
                     address: ""
                 });
@@ -239,15 +199,12 @@ export default function Product() {
                 if (modal) {
                     modal.close();
                 }
+            } catch (error) {
+                setAlert("An error occurred while sending the message.");
+                console.error(error);
+            }finally {
                 setBtnLoading(false);
-                setAlert("Message sent successfully!");
-            } else {
-                setAlert(`Error: ${data.message}`);
-                setAlert(`Error: ${dataAppSheet.message}`);
             }
-        } catch (error) {
-            setAlert("An error occurred while sending the message.");
-            console.error(error);
         }
     };
     const formatCurrency = (value: number) => {
@@ -256,25 +213,7 @@ export default function Product() {
             currency: "USD",
         }).format(value);
     };
-    if (isLoading) {
-        return (
-            <div className="flex flex-col justify-center items-center mt-[2em]">
-                <div className="w-12 h-12 border-4 border-bpp-color-300 border-dashed rounded-full animate-spin"></div>
-                <h2 className="
-                text-[12px]
-                lg:text-[14px]
-                xl:text-[20px]
-                text-bpp-color-300
-                font-bold
-                my-6">
-                    Loading...
-                </h2>
-            </div>
-        );
-    }
-    if (errorData) {
-        return <div>Error: {errorData}</div>;
-    }
+
     return(
         <div className="w-full h-fit bg-gradient-to-br from-[#ffffff] via-bpp-color-100 to-[#ffffff] pt-10 pb-[6em] px-3 overflow-hidden">
             {alert ? (
@@ -290,10 +229,11 @@ export default function Product() {
                 ""
             )}
             <div className="max-w-screen-xl mx-auto px-2">
-                <h2 className={`text-start text-bpp-color-300 text-[16px] md:text-[18px] xl:text-[22px] font-bold mb-[10px] ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}>{t('our_products')}</h2>
-                <div className="grid grid-cols-12 items-center justify-center gap-[2vw] lg:gap-[1vw]">
-                    {product && product.map((product, index)=>
-                        <article key={index} data-aos="fade-right" data-aos-easing="ease-in-sine"
+                <h2 data-aos="fade-right" className={`text-start text-bpp-color-300 text-[16px] md:text-[18px] xl:text-[22px] font-bold mb-[10px] ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}>{t('our_products')}</h2>
+                <div data-aos="fade-right" className="grid grid-cols-12 items-center justify-center gap-[2vw] lg:gap-[1vw]">
+                    {items && items.map((product, index)=>
+                        product.category == 'products' ?
+                        <article key={index}
                              className="col-span-6 md:col-span-4 lg:col-span-3 h-full bg-[#ffffff] rounded-[12px] p-2 overflow-hidden transition-all duration-[150]">
                             <div className="bg-bpp-color-100/30 rounded-[12px] h-customize h-[186px] md:h-[216px] xl:h-[232px] overflow-hidden">
                                 <img src={product.image_url} alt={product.pro_name} className="w-full h-full object-contain object-center p-1"/>
@@ -312,24 +252,24 @@ export default function Product() {
                                         ${product.price}
                                     </h2>
                                     <button
-                                        onClick={() => handleModalOpen(product.pro_id)}
+                                        onClick={() => handleModalOpen(product.item_id)}
                                         className={`w-full bg-bpp-color-300 py-[2px] px-[16px] rounded-full text-[#ffffff] hover:bg-bpp-color-200 transition-all duration-[150] ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}>
                                         {t('btn_buy')}
                                     </button>
                                 </div>
                             </div>
                         </article>
+                        : 
+                        null
                     )}
                 </div>
             </div>
         {/*    modal*/}
-            {modalID && product?.map((items, idx)=>
-            <dialog key={idx} id={items.pro_id} className="modal">
+            {modalID && items?.map((items, idx)=>
+                    items.category == 'products' ?
+            <dialog key={idx} id={items.item_id} className="modal">
                 <div className="modal-box bg-bpp-color-300">
-                    <form>
-                        {/* if there is a button in form, it will close the modal */}
-                        <button onClick={handleCloseModal} className="btn btn-sm btn-circle btn-ghost text-bpp-color-100 absolute right-2 top-2">✕</button>
-                    </form>
+                    <button onClick={handleCloseModal} className="btn btn-sm btn-circle btn-ghost text-bpp-color-100 absolute right-2 top-2">✕</button>
                     <div className="mt-[2em]">
                         <form className="space-y-4 pb-[4em]" onSubmit={handleSubmit}>
                             <div >
@@ -474,7 +414,8 @@ export default function Product() {
                         </form>
                     </div>
                 </div>
-            </dialog>
+            </dialog> :
+                        null
             )}
         </div>
     )

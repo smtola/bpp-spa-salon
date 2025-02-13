@@ -4,7 +4,7 @@ export default function WhyUs() {
     const {t} = useTranslation();
     return(
         <section className="bg-bpp-color-300 p-0 overflow-hidden">
-            <h2 data-aos="fade-up" data-aos-easing="ease-in-sine"
+            <h2 data-aos="fade-up"
                 className="text-start text-[#ffffff] text-[18px] xl:text-[22px] font-bold mt-[3em] ms-[1em] md:ms-[9em] lg:ms-[14em] 2xl:ms-[10em] mb-[1em]"
             >{t('why_choose_us')}</h2>
             <div className="
@@ -21,7 +21,7 @@ export default function WhyUs() {
             ">
                 <div className="hidden xl:block overflow-hidden">
                     <div className="flex flex-wrap lg:justify-center items-center my-[1em] space-y-[1em] ">
-                        <div data-aos="fade-left" data-aos-easing="ease-in-sine"
+                        <div data-aos="fade-left"
                             className="inline-flex space-x-4">
                             <h2
                                 className="
@@ -49,7 +49,7 @@ export default function WhyUs() {
                             ">{t('al_detail')}</p>
                             </div>
                         </div>
-                        <div data-aos="fade-right" data-aos-easing="ease-in-sine" className="inline-flex space-x-4">
+                        <div data-aos="fade-right"  className="inline-flex space-x-4">
                             <h2
                                 className="
                             text-[54px] 2xl:text-[60px]
@@ -76,7 +76,7 @@ export default function WhyUs() {
                             ">{t('es_detail')}</p>
                             </div>
                         </div>
-                        <div data-aos="fade-left" data-aos-easing="ease-in-sine"
+                        <div data-aos="fade-left"
                             className="inline-flex space-x-4">
                             <h2
                                 className="
@@ -104,7 +104,7 @@ export default function WhyUs() {
                             ">{t('pqp_detail')}</p>
                             </div>
                         </div>
-                        <div data-aos="fade-right" data-aos-easing="ease-in-sine" className="inline-flex space-x-4">
+                        <div data-aos="fade-right"  className="inline-flex space-x-4">
                             <h2
                                 className="
                             text-[54px] 2xl:text-[60px]
@@ -131,7 +131,7 @@ export default function WhyUs() {
                             ">{t('ifa_detail')}</p>
                             </div>
                         </div>
-                        <div data-aos="fade-left" data-aos-easing="ease-in-sine"
+                        <div data-aos="fade-left"
                             className="inline-flex space-x-4">
                             <h2
                                 className="

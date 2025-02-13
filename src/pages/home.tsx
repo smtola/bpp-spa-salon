@@ -12,15 +12,79 @@ import Scroll from "../components/Scroll";
 import "./Home.css";
 import { useTranslation } from 'react-i18next';
 import '../i18n';
+import { Items } from "../components/ItemService"; // Import Items interface
 export default function Home(){
+    const [isLoading, setIsLoading] = useState(true);
+    const [items, setItems] = useState<Items[] | null>(null);
+    const [errorData, setErrorData] = useState<string | null>(null);
+
     const services = useRef<HTMLDivElement>(null);
     const products = useRef<HTMLDivElement>(null);
     const {t} = useTranslation();
     const [lang, setLang] = useState<string | null>(null);
+  console.log(items)
+    useEffect(()=>{
+        fetchData();
+    },[]);
     useEffect(()=>{
         const localeEn = localStorage.getItem('i18nextLng');
         setLang(localeEn);
     });
+    const fetchData = async () => {
+        const apiKey = 'V2-zXfYl-N34Ka-WaWcb-JA4zL-LoOjX-4Xgbf-MXUfn-dy5U0';
+        const appId = '630daa92-8472-4471-a1e6-31b8f7bf869c';
+        const tableName = "item";
+        const endPoint = `https://api.appsheet.com/api/v2/apps/${appId}/tables/${tableName}/query`;
+
+        setIsLoading(true);
+        try{
+            const response = await fetch(endPoint, {
+                method: "POST",
+                headers:{
+                    "Content-Type": "application/json",
+                    applicationAccessKey: apiKey,
+                },
+                body:JSON.stringify({
+                    Action:"Find",
+                    Properties:{
+                        Locale:"en-US",
+                        Timezone: "UTC",
+                    },
+                    Rows:[]
+                }),
+            });
+            if(!response.ok){
+                throw new Error("Failed to fetch data from Database");
+            }
+            const result: Items[] = await response.json();
+            setItems(result);
+        }catch (err){
+            setErrorData((err as Error).message);
+        }finally {
+            setIsLoading(false);
+        }
+    }
+
+    if (isLoading) {
+        return (
+            <div className="flex flex-col justify-center items-center min-h-screen">
+                <span className="loader"></span>
+                <h2 className="
+                text-[12px]
+                lg:text-[14px]
+                xl:text-[20px]
+                text-bpp-color-300
+                font-bold
+                my-6
+                font-['Moulpali']">
+                    Data loading...
+                </h2>
+            </div>
+        );
+    }
+    if (errorData) {
+        return <div>Error: {errorData}</div>;
+    }
     return(
         <div className="scroll-smooth">
             <Scroll />
@@ -67,11 +131,11 @@ export default function Home(){
                 </header>
                 {/* Services Section*/}
                 <section ref={services} className="mt-[1em] md:mt-[3em] p-0 overflow-hidden">
-                    <Services/>
+                    <Services items={items}/>
                 </section>
                 {/* Our Products Section*/}
                 <section ref={products} className="m-0 -0">
-                    <Product />
+                    <Product items={items}/>
                 </section>
                 {/*Why Choose Us Section*/}
                 <WhyUs />

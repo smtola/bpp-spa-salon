@@ -10,39 +10,34 @@ import 'swiper/css/navigation';
 import { useTranslation } from 'react-i18next';
 import '../i18n';
 import {useEffect, useState} from "react";
+import { Items } from "./ItemService";
 
-interface Service {
-    sv_id:string;
-    product_name:string;
-    image_url:string;
+interface ItemProp{
+    items: Items[] | null;
 }
-export default function Services() {
-    const [service, setService] = useState<Service[] | null>(null);
+export default function Services({items}:ItemProp) {
     const [error, setError] = useState({
         phone: "",
     });
-    const [isLoading, setIsLoading] = useState(true);
-
     const [productName, setProductName] = useState<string | null>('');
     const [formData, setFormData] = useState({
-        product_name: "",
+        pro_name: "",
         name: "",
         phone: "",
         at: new Date(),
         message:""
     });
-    const [errorData, setErrorData] = useState<string | null>(null);
     const [modalID, setModalID] = useState<string>('');
     const [btnLoading, setBtnLoading] = useState(true);
     const [alert, setAlert] = useState<string | null>(null);
     const {t} = useTranslation();
     const [lang, setLang] = useState<string | null>(null);
+
     useEffect(()=>{
         const localeEn = localStorage.getItem('i18nextLng');
         setLang(localeEn);
     });
     useEffect(()=>{
-        fetchData();
         if (alert) {
             const timer = setTimeout(() => {
                 setAlert(null);
@@ -56,7 +51,7 @@ export default function Services() {
         // Update formData whenever productName changes
         setFormData((prev) => ({
             ...prev,
-            product_name: productName || "",
+            pro_name: productName || "",
         }));
     }, [productName]);
     const formatDate = (isoString: any) => {
@@ -89,55 +84,42 @@ export default function Services() {
                 console.error(`No element found with ID "${id}".`);
             }
         }, 0);
-        service?.map((items) => {
-            if (items.sv_id === id) {
-                setProductName(items.product_name);
+        items?.map((items) => {
+            if (items.item_id === id) {
+                setProductName(items.pro_name);
             }
         });
     }
-    const fetchData = async () => {
-        const apiKey = 'V2-zXfYl-N34Ka-WaWcb-JA4zL-LoOjX-4Xgbf-MXUfn-dy5U0';
-        const tableName = "Service";
-        const appId = '630daa92-8472-4471-a1e6-31b8f7bf869c';
-        const endPoint = `https://api.appsheet.com/api/v2/apps/${appId}/tables/${tableName}/query`;
 
-        setIsLoading(true);
-        try{
-            const response = await fetch(endPoint, {
-                method: "POST",
-                headers:{
-                    "Content-Type": "application/json",
-                    applicationAccessKey: apiKey,
-                },
-                body:JSON.stringify({
-                    Action:"Find",
-                    Properties:{
-                        Locale:"en-US",
-                        Timezone: "UTC",
-                    },
-                    Rows:[]
-                }),
-            });
-            if(!response.ok){
-                throw new Error("Failed to fetch data from Database");
-            }
-            const result: Service[] = await response.json();
-            setService(result);
-        }catch (err){
-            setErrorData((err as Error).message);
-        }finally {
-            setIsLoading(false);
+    const handleCloseModal = (e:React.FormEvent) => {
+        e.preventDefault();
+        setFormData({
+            ...formData,
+            name: '',
+            phone: '',
+            message: '',
+            at: new Date()
+        });
+
+        const modal = document.getElementById(modalID) as HTMLDialogElement | null;
+        if (modal) {
+            modal.close();
         }
     }
     const handleChange = (e: any) => {
         setFormData({
             ...formData,
-            [e.target.id]: e.target.value,
+            [e.target.id]: e.target.value
         });
     };
-
+    const handleChangeDate = (date: Date | null) => {
+        setFormData({
+            ...formData,
+            at: date ?? new Date(),
+        });
+    };
     const validatePhone = (phone: any) => {
-        const phoneRegex = /^(?:\+855|0)(?:[1-9]{1}[0-9]{7})$/;
+        const phoneRegex = /^(?:\+855|0)(?:[1-9]{1}[0-9]{8})|(?:[1-9]{1}[0-9]{7})$/;
         return phoneRegex.test(phone);
     };
 
@@ -152,71 +134,73 @@ export default function Services() {
             phone: phoneValid ? "" : t('valid_phone')
         }));
 
-        if (!phoneValid ) {
-            // Submit the form data here
-           return;
-        }
+        if (phoneValid) {
 
-        const apiKey = 'V2-zXfYl-N34Ka-WaWcb-JA4zL-LoOjX-4Xgbf-MXUfn-dy5U0';
-        const tableName = "booking";
-        const appId = '630daa92-8472-4471-a1e6-31b8f7bf869c';
-        const endPoint = `https://api.appsheet.com/api/v2/apps/${appId}/tables/${tableName}/query`;
+            const apiKey = 'V2-zXfYl-N34Ka-WaWcb-JA4zL-LoOjX-4Xgbf-MXUfn-dy5U0';
+            const appId = '630daa92-8472-4471-a1e6-31b8f7bf869c';
+            const tableName = "booking";
+            const endPoint = `https://api.appsheet.com/api/v2/apps/${appId}/tables/${tableName}/query`;
 
-        // telegram
-        const TELEGRAM_BOT_TOKEN = '7786727966:AAENBDXFKdVcYAPYkKFkpEta2-UlvoyB1q0'; // Store your token in an environment variable
-        const TELEGRAM_CHAT_ID = '-1002459175480'; // Store your group chat ID in an environment variable
-        const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-        const message = `
-        📦 *New Service Booking* 📦
-        - 📇 *Customer Name:* ${formData.name}
-        - 📞 *Phone:* ${formData.phone}
-        - 🕐 *Arrival Time:* ${formatDate(formData.at)}
-        - 📩 *Message:* ${formData.message}
-        - =============================
-        - 🏷️ *Name:* ${productName}
-        `;
+            // telegram
+            const TELEGRAM_BOT_TOKEN = '7786727966:AAENBDXFKdVcYAPYkKFkpEta2-UlvoyB1q0'; // Store your token in an environment variable
+            const TELEGRAM_CHAT_ID = '-1002459175480'; // Store your group chat ID in an environment variable
+            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+            const message = `
+            📦 *New Service Booking* 📦
+            - 📇 *Customer Name:* ${formData.name}
+            - 📞 *Phone:* ${formData.phone}
+            - 🕐 *Arrival Time:* ${formatDate(formData.at)}
+            - 📩 *Message:* ${formData.message}
+            - =============================
+            - 🏷️ *Product Name:* ${productName}
+            `;
 
-        setBtnLoading(true);
-        try {
-            const res = await fetch(url, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    chat_id: TELEGRAM_CHAT_ID,
-                    text: message,
-                    parse_mode: 'Markdown', // Enables formatting
-                }),
-            });
+            setBtnLoading(true);
+            try {
+                const res = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: message,
+                        parse_mode: 'Markdown', // Enables formatting
+                    }),
+                });
 
-            const resAppSheet = await fetch(endPoint, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    applicationAccessKey: apiKey,
-                },
-                body: JSON.stringify({
-                    Action: "Add",
-                    Properties: {
-                        Locale: "en-US",
-                        Timezone: "UTC",
+                const resAppSheet = await fetch(endPoint, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        applicationAccessKey: apiKey,
                     },
-                    Rows: [
-                        {
-                            name: formData.name,
-                            phone: formData.phone,
-                            arrival_time: formatDate(formData.at),
-                            message: formData.message,
+                    body: JSON.stringify({
+                        Action: "Add",
+                        Properties: {
+                            Locale: "en-US",
+                            Timezone: "UTC",
                         },
-                    ],
-                }),
-            });
+                        Rows: [
+                            {
+                                name: formData.name,
+                                phone: formData.phone,
+                                arrival_time: formatDate(formData.at),
+                                message: formData.message,
+                            },
+                        ],
+                    }),
+                });
 
-            const data = await res.json();
-            const dataAppSheet = await resAppSheet.json();
-
-            if (res.ok) {
+                const data = await res.json();
+                const dataAppSheet = await resAppSheet.json();
+                setBtnLoading(false);
+                if (res.ok) {
+                    setAlert("Message sent successfully!");
+                } else {
+                    setAlert(`Error: ${data.message}`);
+                    setAlert(`Error: ${dataAppSheet.message}`);
+                }
                 setFormData({
-                    product_name: "",
+                    ...formData,
                     name: "",
                     phone: "",
                     at: new Date(),
@@ -227,38 +211,15 @@ export default function Services() {
                 if (modal) {
                     modal.close();
                 }
+
+            } catch (error) {
+                    setAlert("An error occurred while sending the message.");
+                    console.error(error);
+                }finally {
                 setBtnLoading(false);
-                setAlert("Message sent successfully!");
-            } else {
-                setAlert(`Error: ${data.message}`);
-                setAlert(`Error: ${dataAppSheet.message}`);
             }
-        } catch (error) {
-            setAlert("An error occurred while sending the message.");
-            console.error(error);
         }
     };
-
-    if (isLoading) {
-        return (
-            <div className="flex flex-col items-center">
-                <div className="w-12 h-12 border-4 border-bpp-color-300 border-dashed rounded-full animate-spin"></div>
-                <h2 className="
-                text-[12px]
-                lg:text-[14px]
-                xl:text-[20px]
-                text-bpp-color-300
-                font-bold
-                my-6
-                font-['Moulpali']">
-                    ពោធិ៍ព្រឹក្សបាយ៍ន ស្បា និងសាឡន
-                </h2>
-            </div>
-        );
-    }
-    if (errorData) {
-        return <div>Error: {errorData}</div>;
-    }
     return(
         <div className="min-h-[72vh] md:min-h-[70vh] lg:min-h-[59vh] xl:min-h-screen w-full bg-gradient-to-r from-bpp-color-300 to-bpp-color-100 ">
             {alert ? (
@@ -276,7 +237,7 @@ export default function Services() {
 
             <div className="max-w-screen-lg 2xl:max-w-screen-xl mx-auto px-3 md:px-5 py-5">
             <div className="flex items-center space-x-[3em] xl:space-x-[14em] 2xl:space-x-[22em] md:pt-[2em] 2xl:pt-[3em] ">
-                <h2 className={`font-bold text-[16px] md:text-[32px] text-[#ffffff] ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}>{t('our_service')}</h2>
+                <h2 data-aos="fade-right" className={`font-bold text-[16px] md:text-[32px] text-[#ffffff] ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}>{t('our_service')}</h2>
             </div>
                 <h2 className={`font-light text-[16px] md:text-[20px] text-[#ffffff] text-center ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}>{t('ft')}</h2>
 
@@ -317,27 +278,29 @@ export default function Services() {
                     }}
                     className="mySwiper transition-all duration-[150]" // Add padding-top for pagination space
                 >
-                    {service && service.map((services, index) => (
-                        <SwiperSlide
-                            key={index} className="transition-all duration-[150] !h-full">
-                            <div className="bg-[#ffffff] rounded-[20px] !h-full overflow-hidden">
-                                <div className="overflow-hidden h-customize h-[186px] md:h-[216px] lg:h-[230px] 2xl:h-[296px]">
-                                    <img src={services.image_url} alt={`Product ${index + 1}`}
-                                         className="w-full h-full object-cover object-center rounded-[20px] p-2"
-                                    />
-                                </div>
-                                <div className="px-2 pb-3">
-                                    <h2 className="text-customize-1 text-[12px] md:text-[18px] text-bpp-color-300 font-medium my-2">
-                                        {services.product_name}
-                                    </h2>
-                                    <button
-                                        onClick={() =>handleModalOpen(services.sv_id)}
-                                        className={`text-customize-1 bg-bpp-color-300 text-[#ffffff] py-[2px] px-[15px] rounded-full hover:bg-bpp-color-200 transition-all duration-[150] ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}>
-                                        {t('btn_book_now')}
-                                    </button>
-                                </div>
-                            </div>
-                        </SwiperSlide>
+                    {items && items.map((services, index) => (
+                      services.category === 'services' ?
+                          <SwiperSlide
+                              key={index} className="transition-all duration-[150] !h-full">
+                              <div className="bg-[#ffffff] rounded-[20px] !h-full overflow-hidden">
+                                  <div className="overflow-hidden h-customize h-[186px] md:h-[216px] lg:h-[230px] 2xl:h-[296px]">
+                                      <img src={services.image_url} alt={`Product ${index + 1}`}
+                                           className="w-full h-full object-cover object-center rounded-[20px] p-2"
+                                      />
+                                  </div>
+                                  <div className="px-2 pb-3">
+                                      <h2 className="text-customize-1 text-[12px] md:text-[18px] text-bpp-color-300 font-medium my-2">
+                                          {services.pro_name}
+                                      </h2>
+                                      <button
+                                          onClick={() =>handleModalOpen(services.item_id)}
+                                          className={`text-customize-1 bg-bpp-color-300 text-[#ffffff] py-[2px] px-[15px] rounded-full hover:bg-bpp-color-200 transition-all duration-[150] ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}>
+                                          {t('btn_book_now')}
+                                      </button>
+                                  </div>
+                              </div>
+                          </SwiperSlide>
+                          : null
                     ))}
                     <div className="swiper-button-next">
                         <svg className="!absolute z-[50] !w-[24px]" viewBox="0 0 13 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -354,25 +317,23 @@ export default function Services() {
         </div>
 
             {/*  Modal  */}
-            {modalID && service?.map((items, idx)=>
-                <dialog key={idx} id={items.sv_id} className="modal">
+            {modalID && items?.map((items, idx)=>
+                items.category == 'services' ?
+                <dialog key={idx} id={items.item_id} className="modal">
                     <div className="modal-box bg-bpp-color-300">
-                        <form method="dialog">
-                            {/* if there is a button in form, it will close the modal */}
-                            <button className="btn btn-sm btn-circle btn-ghost text-bpp-color-100 absolute right-2 top-2">✕</button>
-                        </form>
+                        <button onClick={handleCloseModal} className="btn btn-sm btn-circle btn-ghost text-bpp-color-100 absolute right-2 top-2">✕</button>
                         <div className="mt-[2em]">
                             <form onSubmit={handleSubmit} className="space-y-4 pb-[4em] md:pb-0">
                                 <div>
-                                    <label className={`text-bpp-color-100 ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`} htmlFor="product_name"> {t('product_name')} </label>
+                                    <label className={`text-bpp-color-100 ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`} htmlFor="pro_name"> {t('product_name')} </label>
                                     <input
                                         className={`w-full rounded-lg border-gray-200 p-3 text-sm text-bpp-color-300 ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}
                                         placeholder={t('product_name')}
                                         type="text"
-                                        value={formData.product_name}
+                                        value={formData.pro_name}
                                         onChange={handleChange}
                                         disabled
-                                        id="product_name"
+                                        id="pro_name"
                                     />
                                 </div>
                                 <div>
@@ -408,7 +369,12 @@ export default function Services() {
                                         className={`w-full appearance-none rounded-lg border-gray-200 p-3 text-sm text-bpp-color-300 ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}
                                         id="at"
                                         selected={formData.at}
-                                        onChange={handleChange} //only when value has changed
+                                        onChange={handleChangeDate}
+                                        showTimeSelect
+                                        timeFormat="h:mm aa"
+                                        timeIntervals={15}
+                                        timeCaption="Time"
+                                        dateFormat="dd/MM/yyyy h:mm aa"
                                     />
                                 </div>
 
@@ -435,7 +401,7 @@ export default function Services() {
                             </form>
                         </div>
                     </div>
-                </dialog>
+                </dialog>:null
             )}
         </div>
     )
