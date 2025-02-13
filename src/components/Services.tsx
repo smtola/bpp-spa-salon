@@ -281,7 +281,7 @@ export default function Services({items}:ItemProp) {
                     {items && items.map((services, index) => (
                       services.category === 'services' ?
                           <SwiperSlide
-                              key={index} className="transition-all duration-[150] !h-full">
+                              key={index} data-aos={index % 2 === 1 ? "fade-left":"fade-right"} className="transition-all duration-[150] !h-full">
                               <div className="bg-[#ffffff] rounded-[20px] !h-full overflow-hidden">
                                   <div className="overflow-hidden h-customize h-[186px] md:h-[216px] lg:h-[230px] 2xl:h-[296px]">
                                       <img src={services.image_url} alt={`Product ${index + 1}`}

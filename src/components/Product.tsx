@@ -230,10 +230,10 @@ export default function Product({items}:ItemProp) {
             )}
             <div className="max-w-screen-xl mx-auto px-2">
                 <h2 data-aos="fade-right" className={`text-start text-bpp-color-300 text-[16px] md:text-[18px] xl:text-[22px] font-bold mb-[10px] ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}>{t('our_products')}</h2>
-                <div data-aos="fade-right" className="grid grid-cols-12 items-center justify-center gap-[2vw] lg:gap-[1vw]">
+                <div  className="grid grid-cols-12 items-center justify-center gap-[2vw] lg:gap-[1vw]">
                     {items && items.map((product, index)=>
                         product.category == 'products' ?
-                        <article key={index}
+                        <article key={index} data-aos={index % 2 === 1 ? "fade-left":"fade-right"}
                              className="col-span-6 md:col-span-4 lg:col-span-3 h-full bg-[#ffffff] rounded-[12px] p-2 overflow-hidden transition-all duration-[150]">
                             <div className="bg-bpp-color-100/30 rounded-[12px] h-customize h-[186px] md:h-[216px] xl:h-[232px] overflow-hidden">
                                 <img src={product.image_url} alt={product.pro_name} className="w-full h-full object-contain object-center p-1"/>

@@ -146,7 +146,7 @@ export default function Home(){
                              className="absolute inset-0 w-full h-full object-center object-cover"/>
                         <div className="absolute inset-0 bg-gradient-to-br from-[#ffffff]/70 via-bpp-color-100/80 to-[#ffffff]/40"></div>
                         <div className="relative">
-                            <h1 data-aos="fade-right" data-aos-easing="ease-in-sine" className={`text-bpp-color-300 font-[400] leading-[40px] text-[40px] md:text-[80px] lg:text-[120px]`}>{t('quote')}</h1>
+                            <h1 data-aos="fade-right" data-aos-anchor-placement="top-bottom" data-aos-easing="ease-in-sine" className={`text-bpp-color-300 font-[400] leading-[40px] text-[40px] md:text-[80px] lg:text-[120px]`}>{t('quote')}</h1>
                         </div>
                     </div>
                 </section >
