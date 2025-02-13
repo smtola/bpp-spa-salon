@@ -8,10 +8,7 @@ import 'aos/dist/aos.css';
 import {useEffect} from "react";
 function App() {
     useEffect(() => {
-        AOS.init({
-            duration: 600,  // Optional: Set animation duration
-            easing: 'ease-in-out',  // Optional: Set easing function
-        });
+        AOS.init();
     }, []);
   return (
     <BrowserRouter>
