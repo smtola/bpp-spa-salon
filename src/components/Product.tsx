@@ -130,14 +130,13 @@ export default function Product() {
             }
         });
     }
-    const handleCloseModal = (e:React.FormEvent) => {
-        e.preventDefault();
+    const handleCloseModal = () => {
         setFormData({
             productName: "",
-            name: "",
-            phone: "",
             price: 0,
             qtyChange: 0,
+            name: "",
+            phone: "",
             address: ""
         });
 
