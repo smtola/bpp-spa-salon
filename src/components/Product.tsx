@@ -135,6 +135,9 @@ export default function Product() {
         setFormData({
             ...formData,
             qtyChange: 0,
+            name: '',
+            phone: '',
+            address: ''
         });
 
         const modal = document.getElementById(modalID) as HTMLDialogElement | null;
