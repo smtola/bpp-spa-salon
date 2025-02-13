@@ -11,7 +11,6 @@ function App() {
         AOS.init({
             duration: 600,  // Optional: Set animation duration
             easing: 'ease-in-out',  // Optional: Set easing function
-            once: true,  // Optional: Set animation to trigger only once
         });
     }, []);
   return (
