@@ -259,7 +259,7 @@ export default function Product() {
     };
     if (isLoading) {
         return (
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col justify-center items-center mt-[2em]">
                 <div className="w-12 h-12 border-4 border-bpp-color-300 border-dashed rounded-full animate-spin"></div>
                 <h2 className="
                 text-[12px]
@@ -267,9 +267,8 @@ export default function Product() {
                 xl:text-[20px]
                 text-bpp-color-300
                 font-bold
-                my-6
-                font-['Moulpali']">
-                    ពោធិ៍ព្រឹក្សបាយ៍ន ស្បា និងសាឡន
+                my-6">
+                    Loading...
                 </h2>
             </div>
         );
@@ -291,37 +290,39 @@ export default function Product() {
             ) : (
                 ""
             )}
-            <h2 className={`text-start text-bpp-color-300 text-[16px] md:text-[18px] xl:text-[22px] font-bold xl:ms-[10em] mb-[2em] ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}>{t('our_products')}</h2>
-            <div className="max-w-screen-lg mx-auto grid grid-cols-12 items-center justify-center gap-[2vw] lg:gap-[1vw]">
-                {product && product.map((product, index)=>
-            <div key={index} data-aos="fade-right" data-aos-easing="ease-in-sine"
-                className="col-span-6 md:col-span-4 lg:col-span-3 h-full bg-[#ffffff] rounded-[12px] p-2 overflow-hidden transition-all duration-[150]">
-                <div className="bg-bpp-color-100/30 rounded-[12px] h-customize h-[186px] md:h-[205px] overflow-hidden">
-                    <img src={product.image_url} alt={product.pro_name} className="w-full h-full object-contain object-center p-1"/>
-                </div>
-                <div className="flex flex-col">
-                    <div>
-                        <div className="inline-flex items-end space-x-2">
-                            <h2 className="text-bpp-color-300 text-customize-1 text-[14px] md:text-[18px] font-bold">RESTORE</h2>
-                            <h3 className="text-bpp-color-300 text-customize text-[12px] md:text-[14px] font-bold">Premium</h3>
-                        </div>
-                        <h2 className="text-bpp-color-300 text-customize-1 text-[14px] md:text-[16px] font-bold">{product.pro_name}</h2>
-                        <p className="text-bpp-color-300 text-customize text-[11px] md:text-[12px] font-bold text-pretty">{product.description}</p>
-                    </div>
-                    <div className="w-full inline-flex justify-between items-end space-x-[2em] md:space-x-[4em] space-y-[10px]">
-                        <h2 className="text-bpp-color-300 font-bold bg-bpp-color-100/40 rounded-full px-[14px] py-[1px]">
-                            ${product.price}
-                        </h2>
-                        <button
-                            onClick={() => handleModalOpen(product.pro_id)}
-                            className={`w-full bg-bpp-color-300 py-[2px] px-[16px] rounded-full text-[#ffffff] hover:bg-bpp-color-200 transition-all duration-[150] ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}>
-                            {t('btn_buy')}
-                        </button>
-                    </div>
+            <div className="max-w-screen-xl mx-auto px-2">
+                <h2 className={`text-start text-bpp-color-300 text-[16px] md:text-[18px] xl:text-[22px] font-bold mb-[10px] ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}>{t('our_products')}</h2>
+                <div className="grid grid-cols-12 items-center justify-center gap-[2vw] lg:gap-[1vw]">
+                    {product && product.map((product, index)=>
+                        <article key={index} data-aos="fade-right" data-aos-easing="ease-in-sine"
+                             className="col-span-6 md:col-span-4 lg:col-span-3 h-full bg-[#ffffff] rounded-[12px] p-2 overflow-hidden transition-all duration-[150]">
+                            <div className="bg-bpp-color-100/30 rounded-[12px] h-customize h-[186px] md:h-[216px] xl:h-[232px] overflow-hidden">
+                                <img src={product.image_url} alt={product.pro_name} className="w-full h-full object-contain object-center p-1"/>
+                            </div>
+                            <div className="flex flex-col">
+                                <div>
+                                    <div className="inline-flex items-end space-x-2">
+                                        <h2 className="text-bpp-color-300 text-customize-1 text-[14px] md:text-[18px] font-bold">RESTORE</h2>
+                                        <h3 className="text-bpp-color-300 text-customize text-[12px] md:text-[14px] font-bold">Premium</h3>
+                                    </div>
+                                    <h2 className="text-bpp-color-300 text-customize-1 text-[14px] md:text-[16px] font-bold">{product.pro_name}</h2>
+                                    <p className="text-bpp-color-300 text-customize text-[11px] md:text-[12px] font-bold text-pretty">{product.description}</p>
+                                </div>
+                                <div className="w-full inline-flex justify-between items-end space-x-[2em] md:space-x-[4em] space-y-[10px]">
+                                    <h2 className="text-bpp-color-300 font-bold bg-bpp-color-100/40 rounded-full px-[14px] py-[1px]">
+                                        ${product.price}
+                                    </h2>
+                                    <button
+                                        onClick={() => handleModalOpen(product.pro_id)}
+                                        className={`w-full bg-bpp-color-300 py-[2px] px-[16px] rounded-full text-[#ffffff] hover:bg-bpp-color-200 transition-all duration-[150] ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}>
+                                        {t('btn_buy')}
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+                    )}
                 </div>
             </div>
-                )}
-        </div>
         {/*    modal*/}
             {modalID && product?.map((items, idx)=>
             <dialog key={idx} id={items.pro_id} className="modal">
