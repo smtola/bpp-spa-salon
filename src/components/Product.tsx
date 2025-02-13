@@ -215,7 +215,7 @@ export default function Product({items}:ItemProp) {
     };
 
     return(
-        <div className="w-full h-fit bg-gradient-to-br from-[#ffffff] via-bpp-color-100 to-[#ffffff] pt-10 pb-[6em] px-3 overflow-hidden">
+        <div className="w-full h-fit bg-gradient-to-br from-[#ffffff] via-bpp-color-100 to-[#ffffff] py-10 px-3 overflow-hidden">
             {alert ? (
                 <div
                     role="alert"
