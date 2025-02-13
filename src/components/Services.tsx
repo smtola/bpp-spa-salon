@@ -235,7 +235,7 @@ export default function Services({items}:ItemProp) {
                     ""
                 )}
 
-                <div className="max-w-screen-lg 2xl:max-w-screen-xl mx-auto px-3 md:px-5 pt-[1em] xl:pt-[2m]">
+                <div className="max-w-screen-lg 2xl:max-w-screen-xl mx-auto px-3 md:px-5 py-[1em] md:pt-[1em] xl:pt-[2m]">
                     <div className="flex items-center space-x-[3em] xl:space-x-[14em] 2xl:space-x-[22em]">
                         <h2 data-aos="fade-right" className={`font-bold text-[16px] md:text-[32px] text-[#ffffff] ${lang == 'kh' ? "font-['Kantumruy_Pro']": "font-['inter']"}`}>{t('our_service')}</h2>
                     </div>
